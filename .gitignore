@@ -1,0 +1,42 @@
+.DS_Store
+.thumbs.db
+node_modules
+
+# Vue: Quasar core related directories
+.quasar
+frontend/dist
+frontend/quasar.config.*.temporary.compiled*
+
+# Vue: Cordova related directories and files
+/src-cordova/node_modules
+/src-cordova/platforms
+/src-cordova/plugins
+/src-cordova/www
+
+# Vue: Capacitor related directories and files
+/src-capacitor/www
+/src-capacitor/node_modules
+
+# Vue: BEX related directories and files
+/src-bex/www
+/src-bex/js/core
+
+# Python: Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# local .env files
+.env.local*
