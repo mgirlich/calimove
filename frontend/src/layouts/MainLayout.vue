@@ -75,3 +75,10 @@ function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
 </script>
+
+
+<style>
+.q-page-container {
+  margin-left: 1em;
+}
+</style>
