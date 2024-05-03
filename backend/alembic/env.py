@@ -5,6 +5,15 @@ from sqlalchemy import pool
 
 from alembic import context
 
+# avoid `module not found` issue
+# https://stackoverflow.com/a/73706303
+import sys
+import os
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+APP_DIR = os.path.join(BASE_DIR, '..')
+sys.path.append(APP_DIR)
+
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
@@ -16,9 +25,8 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-# from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
-target_metadata = None
+import calimove.models
+target_metadata = calimove.models.Base.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
