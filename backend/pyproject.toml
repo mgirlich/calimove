@@ -17,6 +17,7 @@ alembic = "^1.13.1"
 bs4 = "^0.0.2"
 requests = "^2.31.0"
 pydantic-settings = "^2.2.1"
+pillow = "^10.3.0"
 
 [build-system]
 requires = ["poetry-core"]
