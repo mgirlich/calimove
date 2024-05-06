@@ -46,30 +46,32 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import MenuLink, { MenuLinkProps } from 'components/MenuLink.vue';
+import { laHeartbeatSolid, laChalkboardTeacherSolid, laGripVerticalSolid, laChartLineSolid } from '@quasar/extras/line-awesome';
 
 defineOptions({
   name: 'MainLayout'
 });
 
+
 const linksList: MenuLinkProps[] = [
   {
     title: 'Practice',
-    icon: 'fa-solid fa-dumbbell',
-    link: '/flows/0/'
+    icon: laHeartbeatSolid, // or dumbbell
+    link: '/flows/next/'
   },
   {
     title: 'Flows',
-    icon: 'fa-solid fa-dumbbell',
+    icon: laGripVerticalSolid, // or laListSolid,
     link: '/flows/'
   },
   {
     title: 'Exercises',
-    icon: 'fa-regular fa-circle-question',
+    icon: laChalkboardTeacherSolid, // or laSchoolSolid,
     link: '/exercises/'
   },
   {
     title: 'Log',
-    icon: 'fa-solid fa-table-list',
+    icon: laChartLineSolid,
     link: '/log/'
   },
 ];
