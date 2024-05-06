@@ -62,8 +62,30 @@ def route_flows(db: db_dependency) -> list[schemas.Flow]:
     return flows
 
 
-@app.get("/flows/{flow_id}", status_code=status.HTTP_200_OK)
-def route_flow_detail(flow_id: int, db: db_dependency) -> schemas.FlowDetail:
+def get_next_flow_id(db: Session) -> int:
+    last_flow_id = db.execute(
+        sa.select(models.Workout.flow_id)
+        .select_from(models.Execution)
+        .join(models.Workout)
+        .order_by(models.Execution.finished_at.desc())
+        .limit(1)
+    ).scalar_one_or_none()
+
+    all_flow_ids = db.execute(sa.select(models.Flow.flow_id)).scalars().all()
+
+    print(f"======================================================================== {last_flow_id}")
+    if last_flow_id is None:
+        flow_id = min(all_flow_ids)
+    else:
+        if last_flow_id == max(all_flow_ids):
+            flow_id = min(all_flow_ids)
+        else:
+            flow_id = min([flow_id for flow_id in all_flow_ids if flow_id > last_flow_id])
+
+    return flow_id
+
+
+def get_flow_details(flow_id: int, db: Session) -> schemas.FlowDetail:
     flow_model = db.execute(
         sa.select(models.Flow)
         .filter(models.Flow.flow_id == flow_id)
@@ -76,3 +98,14 @@ def route_flow_detail(flow_id: int, db: db_dependency) -> schemas.FlowDetail:
     flow = schemas.FlowDetail.model_validate(flow_model, from_attributes=True)
     flow.workouts = sorted(flow.workouts, key=lambda w: (w.time_active + w.time_break, -w.time_break, w.n_reps))
     return flow
+
+
+@app.get("/flows/next", status_code=status.HTTP_200_OK)
+def route_flow_detail_next(db: db_dependency) -> schemas.FlowDetail:
+    flow_id = get_next_flow_id(db)
+    return get_flow_details(flow_id, db)
+
+
+@app.get("/flows/{flow_id}", status_code=status.HTTP_200_OK)
+def route_flow_detail(flow_id: int, db: db_dependency) -> schemas.FlowDetail:
+    return get_flow_details(flow_id, db)

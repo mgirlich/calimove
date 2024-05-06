@@ -1,9 +1,11 @@
+import datetime
+
+import fastapi
+import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .context import app, models
-import pytest
-import fastapi
 
+from .context import app, models
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
@@ -114,4 +116,38 @@ def test_route_flow_detail():
         with pytest.raises(fastapi.HTTPException) as err:
             app.route_flow_detail(99, session)
         assert err.value.status_code == 404
+
+
+def test_get_next_flow_id():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow2 = models.Flow(level=1, name="B")
+        workout1 = models.Workout(lecture_id=1, flow=flow1, n_sets=1, n_reps=1, durations="1;2")
+        workout2 = models.Workout(lecture_id=2, flow=flow2, n_sets=1, n_reps=1, durations="1;2")
+        session.add_all([workout1, workout2])
+        session.flush()
+
+        assert app.get_next_flow_id(session) == flow1.flow_id, "Should be first flow if there are no executions"
+
+        t = datetime.datetime.now(datetime.UTC)
+        session.add(models.Execution(workout=workout1, finished_at=t))
+        session.flush()
+        assert app.get_next_flow_id(session) == flow2.flow_id, "Should be 2nd flow when last execution was 1st flow"
+
+        session.add(models.Execution(workout=workout2, finished_at=t + datetime.timedelta(seconds=1)))
+        session.flush()
+        assert app.get_next_flow_id(session) == flow1.flow_id, "Should be 1st flow when last execution was last flow"
         session.rollback()
+
+
+def test_route_flow_detail_next():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(flow1, 2)
+        w1 = models.Workout(lecture_id=1, n_sets=2, n_reps=1, durations="10;10", flow=flow1)
+
+        session.add_all(flow_exercises + [w1])
+        session.flush()
+
+        flow_is = app.route_flow_detail_next(session)
+        assert flow_is.flow_id == flow1.flow_id

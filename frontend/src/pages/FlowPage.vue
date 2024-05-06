@@ -57,10 +57,10 @@
 import { onBeforeMount, ref, Ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-import ExerciseCard from 'src/components/ExerciseCard.vue';
-import HeadlineNavigation from 'src/components/HeadlineNavigation.vue';
-import WorkoutDetailChip from 'src/components/WorkoutDetailChip.vue';
-import { api } from 'src/boot/axios';
+import ExerciseCard from '../components/ExerciseCard.vue';
+import HeadlineNavigation from '../components/HeadlineNavigation.vue';
+import WorkoutDetailChip from '../components/WorkoutDetailChip.vue';
+import { api } from '../boot/axios';
 
 interface Exercise {
   exercise_id: number

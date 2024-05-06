@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div>
-      <a style="margin-right: 10px;"><q-icon :name="laHourglassStartSolid" /> {{ Math.round(time_total / 60) }}</a>
-      <a style="margin-right: 10px;"><q-icon :name="laCouchSolid" /> {{ 100 - share_active }}%</a>
+  <div class="workoutchip">
+    <div class="row text-left">
+      <a class="col"><q-icon :name="laHourglassStartSolid" /> {{ Math.round(time_total / 60) }}</a>
+      <a class="col"><q-icon :name="laCouchSolid" /> {{ 100 - share_active }}%</a>
     </div>
-    <div>
-      <a style="margin-right: 10px;"><q-icon :name="laRetweetSolid" /> {{ n_sets }}</a>
-      <a style="margin-right: 10px;"><q-icon :name="laDumbbellSolid" /> {{ n_reps }}</a>
+    <div class="row text-left">
+      <a class="col"><q-icon :name="laRetweetSolid" /> {{ n_sets }}</a>
+      <a class="col"><q-icon :name="laDumbbellSolid" /> {{ n_reps }}</a>
     </div>
   </div>
 </template>
@@ -32,3 +32,13 @@ const share_active = computed(() => {
   return 5 * Math.round(share_active / 5);
 })
 </script>
+
+<style>
+.workoutchip {
+  min-width: 8em;
+}
+
+.workoutchip .a {
+  margin-right: 0px;
+}
+</style>
