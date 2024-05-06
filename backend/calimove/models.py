@@ -37,12 +37,14 @@ class Flow(Base):
     workouts_all: Mapped[list["Workout"]] = relationship(back_populates="flow")
     workouts: Mapped[list["Workout"]] = relationship(
         primaryjoin="and_(Workout.flow_id == Flow.flow_id, Workout.skip == False)",
-        viewonly=True
+        viewonly=True,
+        lazy="raise"
     )
     exercises: Mapped[list["Exercise"]] = relationship(
         secondary="flow_exercises",
         order_by="FlowExercise.position",
-        viewonly=True
+        viewonly=True,
+        lazy="raise"
     )
 
     UniqueConstraint("level", "name")

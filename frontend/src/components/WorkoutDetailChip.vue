@@ -1,0 +1,34 @@
+<template>
+  <div>
+    <div>
+      <a style="margin-right: 10px;"><q-icon :name="laHourglassStartSolid" /> {{ Math.round(time_total / 60) }}</a>
+      <a style="margin-right: 10px;"><q-icon :name="laCouchSolid" /> {{ 100 - share_active }}%</a>
+    </div>
+    <div>
+      <a style="margin-right: 10px;"><q-icon :name="laRetweetSolid" /> {{ n_sets }}</a>
+      <a style="margin-right: 10px;"><q-icon :name="laDumbbellSolid" /> {{ n_reps }}</a>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue';
+import { laCouchSolid, laHourglassStartSolid, laDumbbellSolid, laRetweetSolid } from '@quasar/extras/line-awesome';
+
+const props = defineProps({
+  time_active: { type: Number, required: true },
+  time_break: { type: Number, required: true },
+  n_sets: { type: Number, required: true },
+  n_reps: { type: Number, required: true },
+});
+
+const time_total = computed(() => {
+  return props.time_active + props.time_break;
+})
+
+const share_active = computed(() => {
+  const share_active = Math.round(100 * (props.time_active / time_total.value));
+  // rounded to 5% for easier reading
+  return 5 * Math.round(share_active / 5);
+})
+</script>

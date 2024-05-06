@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from .context import app, models
+import pytest
+import fastapi
 
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
@@ -89,3 +91,27 @@ def test_route_flows():
         assert (exercises_is[0].exercise_id == flow_exercises[2].exercise_id and
                 exercises_is[1].exercise_id == flow_exercises[1].exercise_id and
                 exercises_is[2].exercise_id == flow_exercises[0].exercise_id), "Flow exercises not sorted by position"
+
+
+def test_route_flow_detail():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(flow1, 2)
+        w1 = models.Workout(lecture_id=1, n_sets=2, n_reps=1, durations="10;10", flow=flow1)
+        w2 = models.Workout(lecture_id=2, n_sets=3, n_reps=3, durations="10;10", flow=flow1)
+        w3 = models.Workout(lecture_id=3, n_sets=1, n_reps=1, durations="10;10", flow=flow1)
+
+        session.add_all(flow_exercises + [w1, w2, w3])
+        session.flush()
+
+        flow_is_1 = app.route_flow_detail(1, session)
+        assert flow_is_1.flow_id == flow1.flow_id
+        assert flow_is_1.exercises[0].name == flow_exercises[0].exercise.name
+        assert (flow_is_1.workouts[0].workout_id == w3.workout_id and
+                flow_is_1.workouts[1].workout_id == w1.workout_id and
+                flow_is_1.workouts[2].workout_id == w2.workout_id), "Workouts in flow detail not sorted by duration"
+
+        with pytest.raises(fastapi.HTTPException) as err:
+            app.route_flow_detail(99, session)
+        assert err.value.status_code == 404
+        session.rollback()

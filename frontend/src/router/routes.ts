@@ -16,7 +16,10 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/flows',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/FlowsPage.vue') }],
+    children: [
+      { path: '', component: () => import('pages/FlowsPage.vue') },
+      { path: ':flow_id', component: () => import('pages/FlowPage.vue') },
+    ],
   },
 
   // Always leave this as last one,

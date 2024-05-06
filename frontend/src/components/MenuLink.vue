@@ -3,6 +3,7 @@
     clickable
     tag="a"
     :href="link"
+    class="menu-item"
   >
     <q-item-section
       v-if="icon"
@@ -33,3 +34,10 @@ withDefaults(defineProps<MenuLinkProps>(), {
   icon: '',
 });
 </script>
+
+<style>
+.menu-item .q-item__section--side {
+  padding-right: 5px;
+  min-width: 0px;
+}
+</style>
