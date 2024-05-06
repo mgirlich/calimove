@@ -14,8 +14,6 @@
         <q-toolbar-title>
           Calimove
         </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
