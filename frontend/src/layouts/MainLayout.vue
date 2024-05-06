@@ -58,6 +58,11 @@ const linksList: MenuLinkProps[] = [
     link: '/flows/0/'
   },
   {
+    title: 'Flows',
+    icon: 'fa-solid fa-dumbbell',
+    link: '/flows/'
+  },
+  {
     title: 'Exercises',
     icon: 'fa-regular fa-circle-question',
     link: '/exercises/'

@@ -61,3 +61,31 @@ def test_route_exercises():
         result = app.route_exercises(session)
         assert len(result) == 3, "Should be 3 exercises now"
         assert result[0].name == ex3.name, "The exercises should be sorted alphabetically"
+
+
+def test_route_flows():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(n=2, flow=flow1)
+        session.add_all(flow_exercises)
+        session.flush()
+
+        flows_is = app.route_flows(session)
+        assert len(flows_is) == 1
+
+        exercises_is = flows_is[0].exercises
+        assert len(exercises_is) == 2
+        assert exercises_is[0].exercise_id == flow_exercises[0].exercise_id
+        assert exercises_is[1].exercise_id == flow_exercises[1].exercise_id
+        session.rollback()
+
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(n=3, flow=flow1, positions=[10, 2, 0])
+        session.add_all(flow_exercises)
+        session.flush()
+
+        exercises_is = app.route_flows(session)[0].exercises
+        assert len(exercises_is) == 3
+        assert (exercises_is[0].exercise_id == flow_exercises[2].exercise_id and
+                exercises_is[1].exercise_id == flow_exercises[1].exercise_id and
+                exercises_is[2].exercise_id == flow_exercises[0].exercise_id), "Flow exercises not sorted by position"

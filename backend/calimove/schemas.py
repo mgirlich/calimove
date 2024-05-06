@@ -18,3 +18,7 @@ class FlowBase(BaseModel):
     flow_id: int
     level: int
     name: str
+
+
+class Flow(FlowBase):
+    exercises: list[ExerciseBase]

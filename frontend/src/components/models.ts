@@ -4,10 +4,17 @@ export interface FlowBase {
   name: string;
 }
 
-export interface Exercise {
+export interface ExerciseBase {
   exercise_id: number;
   lecture_id: number;
   name: string;
-  mod_lecture_id: number;
+  mod_lecture_id?: number;
+}
+
+export interface Exercise extends ExerciseBase {
   flows: Array<FlowBase>;
+}
+
+export interface Flow extends FlowBase {
+  exercises: Array<ExerciseBase>
 }
