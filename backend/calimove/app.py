@@ -14,6 +14,8 @@ app = FastAPI()
 
 origins = [
     'http://localhost:9000',
+    'https://calimove.vercel.app',
+    'https://calimove-mgirlichs-projects.vercel.app',
 ]
 
 app.add_middleware(

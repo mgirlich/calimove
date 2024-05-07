@@ -12,7 +12,7 @@
 const { configure } = require('quasar/wrappers');
 
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -21,7 +21,7 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
-      
+
       'axios',
     ],
 
@@ -49,6 +49,12 @@ module.exports = configure(function (/* ctx */) {
       target: {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
         node: 'node20'
+      },
+
+      env: {
+        API: ctx.dev
+          ? 'http://127.0.0.1:8000/'
+          : 'https://ps1tsi9sp4.execute-api.eu-west-1.amazonaws.com/calimove/'
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
