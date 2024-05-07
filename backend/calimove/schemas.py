@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from pydantic import BaseModel, ConfigDict, BeforeValidator, computed_field
+from pydantic import BaseModel, ConfigDict, BeforeValidator, computed_field, model_serializer
 
 TIME_BETWEEN_EXERCISES = 15
 TIME_BEFORE_FIRST_EXERCISE = 10 + 6
@@ -60,3 +60,26 @@ class WorkoutBase(BaseModel):
     def time_break(self) -> int:
         n_breaks = self.n_sets * self.n_reps * len(self.durations) - 1
         return TIME_BEFORE_FIRST_EXERCISE + TIME_BETWEEN_EXERCISES * n_breaks + TIME_AFTER_LAST_EXERCISE
+
+
+class WorkoutExercise(ExerciseBase):
+    duration: int
+
+
+class WorkoutDetail(WorkoutBase):
+    flow: "Flow"
+
+    @model_serializer
+    def ser_model(self):
+        exercises = [
+            WorkoutExercise(**ex.model_dump(), duration=dur)
+            for ex, dur in zip(self.flow.exercises, self.durations)
+        ]
+        return dict(
+            workout_id=self.workout_id,
+            lecture_id=self.lecture_id,
+            n_sets=self.n_sets,
+            n_reps=self.n_reps,
+            flow=FlowBase.model_validate(self.flow.model_dump()),
+            exercises=exercises
+        )

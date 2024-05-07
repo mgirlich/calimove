@@ -22,6 +22,12 @@ const routes: RouteRecordRaw[] = [
     ],
   },
 
+  {
+    path: '/practice/:workout_id',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [{ path: '', component: () => import('pages/PracticePage.vue') }],
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {

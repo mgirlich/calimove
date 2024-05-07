@@ -15,6 +15,10 @@ export interface Exercise extends ExerciseBase {
   flows: Array<FlowBase>;
 }
 
+export interface WorkoutExercise extends ExerciseBase {
+  duration: number;
+}
+
 export interface Flow extends FlowBase {
   exercises: Array<ExerciseBase>
 }

@@ -109,3 +109,18 @@ def route_flow_detail_next(db: db_dependency) -> schemas.FlowDetail:
 @app.get("/flows/{flow_id}", status_code=status.HTTP_200_OK)
 def route_flow_detail(flow_id: int, db: db_dependency) -> schemas.FlowDetail:
     return get_flow_details(flow_id, db)
+
+
+@app.get("/workouts/{workout_id}", status_code=status.HTTP_200_OK)
+def route_workouts_detail(workout_id: int, db: db_dependency) -> schemas.WorkoutDetail:
+    workout_model = db.execute(
+        sa.select(models.Workout)
+        .filter(models.Workout.workout_id == workout_id)
+        .options(sa.orm.selectinload(models.Workout.flow).selectinload(models.Flow.exercises))
+    ).scalar_one_or_none()
+
+    if workout_model is None:
+        raise HTTPException(status_code=404, detail="Flow not found")
+
+    workout = schemas.WorkoutDetail.model_validate(workout_model, from_attributes=True)
+    return workout

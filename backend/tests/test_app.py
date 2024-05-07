@@ -5,7 +5,7 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from .context import app, models
+from .context import app, models, schemas
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///:memory:"
 
@@ -151,3 +151,27 @@ def test_route_flow_detail_next():
 
         flow_is = app.route_flow_detail_next(session)
         assert flow_is.flow_id == flow1.flow_id
+
+
+def test_route_workouts_detail():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(flow1, 2)
+        w1 = models.Workout(lecture_id=1, n_sets=2, n_reps=1, durations="10;10", flow=flow1)
+
+        session.add_all(flow_exercises + [w1])
+        session.flush()
+
+        workout_is = app.route_workouts_detail(w1.workout_id, session)
+
+        assert workout_is.workout_id == w1.workout_id
+        assert workout_is.durations == [10, 10]
+        assert workout_is.flow.exercises[0] == schemas.ExerciseBase.model_validate(flow_exercises[0].exercise)
+
+        expected = schemas.ExerciseBase.model_validate(flow_exercises[0].exercise).model_dump()
+        expected["duration"] = 10
+        assert workout_is.model_dump()["exercises"][0] == expected
+
+        with pytest.raises(fastapi.HTTPException) as err:
+            app.route_workouts_detail(99, session)
+        assert err.value.status_code == 404
