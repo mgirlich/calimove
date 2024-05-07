@@ -2,7 +2,7 @@
   <div class="workoutchip">
     <div class="row text-left">
       <a class="col"><q-icon :name="laHourglassStartSolid" /> {{ Math.round(time_total / 60) }}</a>
-      <a class="col"><q-icon :name="laCouchSolid" /> {{ 100 - share_active }}%</a>
+      <a class="col"><q-icon :name="laCouchSolid" /> {{ Math.round(time_break / 60) }}</a>
     </div>
     <div class="row text-left">
       <a class="col"><q-icon :name="laRetweetSolid" /> {{ n_sets }}</a>
@@ -24,12 +24,6 @@ const props = defineProps({
 
 const time_total = computed(() => {
   return props.time_active + props.time_break;
-})
-
-const share_active = computed(() => {
-  const share_active = Math.round(100 * (props.time_active / time_total.value));
-  // rounded to 5% for easier reading
-  return 5 * Math.round(share_active / 5);
 })
 </script>
 
