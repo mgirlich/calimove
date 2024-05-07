@@ -5,7 +5,7 @@ export enum TimerState {
   finished,
 }
 
-const beepAudio = new Audio('../src/assets/beep.mp3');
+const beepAudio = new Audio('/beep.mp3');
 
 function beep() {
   beepAudio.play();

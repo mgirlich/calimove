@@ -5,7 +5,7 @@
         </q-card-section>
         <q-card-section>
             <!-- <q-img :src="`/src/assets/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img> -->
-            <div style="width: 70%; margin: auto;"><q-img :src="`/src/assets/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
+            <div style="width: 70%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
             <div class="card-link">
                 <a class="q-link" :href="lecture_link(lecture_id)">Video</a>
                 <template v-if="mod_lecture_id"><a class="q-link mod-video" :href="lecture_link(mod_lecture_id)">Mods</a></template>

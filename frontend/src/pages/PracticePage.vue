@@ -17,7 +17,7 @@
       <q-card-section>
         <div class="row">
           <div class="col" v-if="curExercise">
-            <div class="row justify-center"><q-img style="max-width: 16em;" :src="`/src/assets/exercise_images/exercise_${curExercise.exercise_id}.png`"></q-img></div>
+            <div class="row justify-center"><q-img style="max-width: 16em;" :src="`/exercise_images/exercise_${curExercise.exercise_id}.png`"></q-img></div>
             <div class="row justify-center">
               <a class="q-link" :href="lectureUrl(curExercise.lecture_id)">Video</a>
               <template v-if="curExercise.mod_lecture_id"><a class="q-link mod-video" :href="lectureUrl(curExercise.mod_lecture_id)">Mods</a></template>
