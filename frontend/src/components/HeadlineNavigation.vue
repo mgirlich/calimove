@@ -1,14 +1,21 @@
 <template>
-  <div>
+  <div class="row">
     <router-link
       v-if="link"
       :to="link"
       custom
       v-slot="{ navigate }"
     >
-      <a class="float-left cursor-pointer" @click="navigate" role="link"><q-icon :name="laArrowLeftSolid" class="q-pr-sm"/>{{ linkTitle }}</a>
+      <a
+        class="col-2 cursor-pointer"
+        @click="navigate"
+        role="link"
+        >
+        <q-icon :name="laArrowLeftSolid" class="q-pr-sm"/>{{ linkTitle }}
+      </a>
     </router-link>
     <h2 class="text-h4" style="width: fit-content; margin: auto;">{{ title }}</h2>
+    <div class="col-2"></div>
   </div>
 
   <q-separator />

@@ -29,7 +29,7 @@ const time_total = computed(() => {
 
 <style>
 .workoutchip {
-  min-width: 8em;
+  min-width: 7em;
 }
 
 .workoutchip .a {

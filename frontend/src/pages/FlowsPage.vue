@@ -22,27 +22,18 @@
 
     <q-separator />
 
-    <div class="row justify-center" style="margin-top: 1em;">
-      <ExerciseCard
-        v-for="exercise, i in flow.exercises"
-        class="col-2"
-        style="margin: 1em 1em;"
-
-        :key="`${flow.flow_id}_${exercise.exercise_id}`"
-        :exercise_id="exercise.exercise_id"
-        :name="`${i + 1}. ${exercise.name}`"
-        :lecture_id="exercise.lecture_id"
-        :mod_lecture_id="exercise.mod_lecture_id"
-        :level_flows="[]"
-      />
-    </div>
+    <ExercisesRow
+      :id="flow.flow_id"
+      :exercises="flow.exercises"
+      numbered
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 
-import ExerciseCard from '../components/ExerciseCard.vue';
+import ExercisesRow from 'src/components/ExercisesRow.vue';
 import { Flow } from '../components/models';
 import { api } from 'src/boot/axios';
 

@@ -2,7 +2,7 @@
   <HeadlineNavigation
     :title="`Level ${ level } - Flow ${ flowName }`"
     :link="`/flows/${flowId}`"
-    linkTitle="Choose another workout"
+    linkTitle="Workouts"
   />
 
   <q-separator />

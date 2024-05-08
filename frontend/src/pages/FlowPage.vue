@@ -2,7 +2,7 @@
   <HeadlineNavigation
     :title="`Level ${ level } - Flow ${ name }`"
     link="/flows"
-    linkTitle="Choose another flow"
+    linkTitle="Flows"
   />
 
   <q-separator />
@@ -12,10 +12,11 @@
     <q-btn
       v-for="workout in workouts"
       rounded
-      style="margin: 0em 1em;"
+      style="margin: 0em 0em;"
       :key="workout.workout_id"
       :color="workoutChosen === workout.workout_id ? 'primary' : 'secondary'"
       @click="workoutChosen = workout.workout_id"
+      class="col-4"
     >
       <WorkoutDetailChip
         :time_active="workout.time_active"
@@ -36,20 +37,11 @@
     </router-link>
   </div>
 
-  <div class="row justify-center" style="margin-top: 1em;">
-    <ExerciseCard
-      v-for="exercise, i in exercises"
-      class="col-2"
-      style="margin: 1em 1em;"
-
-      :key="exercise.exercise_id"
-      :exercise_id="exercise.exercise_id"
-      :name="`${i + 1}. ${exercise.name}`"
-      :lecture_id="exercise.lecture_id"
-      :mod_lecture_id="exercise.mod_lecture_id"
-      :level_flows="null"
-    />
-  </div>
+  <ExercisesRow
+      :id="0"
+      :exercises="exercises"
+      numbered
+  />
 </template>
 
 
@@ -57,7 +49,7 @@
 import { onBeforeMount, ref, Ref } from 'vue';
 import { useRoute } from 'vue-router';
 
-import ExerciseCard from '../components/ExerciseCard.vue';
+import ExercisesRow from 'src/components/ExercisesRow.vue';
 import HeadlineNavigation from '../components/HeadlineNavigation.vue';
 import WorkoutDetailChip from '../components/WorkoutDetailChip.vue';
 import { api } from '../boot/axios';

@@ -7,17 +7,10 @@
     * auto comlete for search
    -->
   <div><q-input v-model="inputExerciseName" label="Exercise name" /></div>
-  <div class="row justify-center" style="margin-top: 1em;">
-    <ExerciseCard
-      v-for="exercise in exercisesFiltered"
-      :key="exercise.exercise_id"
-      :exercise_id="exercise.exercise_id"
-      :name="exercise.name"
-      :lecture_id="exercise.lecture_id"
-      :mod_lecture_id="exercise.mod_lecture_id"
-      :flows="exercise.flows"
-    />
-  </div>
+  <ExercisesRow
+    :id="0"
+    :exercises="exercisesFiltered"
+  />
 </template>
 
 
@@ -25,7 +18,7 @@
 import { onMounted, ref, watch } from 'vue';
 
 import { Exercise } from '../components/models';
-import ExerciseCard from '../components/ExerciseCard.vue';
+import ExercisesRow from 'src/components/ExercisesRow.vue';
 import { api } from 'src/boot/axios';
 
 const exercises = ref<Array<Exercise>>([]);
@@ -57,5 +50,11 @@ onMounted(() => {
 h2 {
   margin-top: 0.25em;
   margin-bottom: 0.25em;
+}
+
+@media (min-width: 1440px) {
+  .exercises .exercise-card {
+    flex-basis: 20%;
+  }
 }
 </style>

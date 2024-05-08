@@ -87,5 +87,6 @@ function toggleLeftDrawer () {
 <style>
 .q-page-container {
   margin-left: 1em;
+  margin-right: 1em;
 }
 </style>

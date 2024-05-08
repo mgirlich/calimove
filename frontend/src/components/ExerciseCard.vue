@@ -4,7 +4,7 @@
             <h3 class="text-h6">{{ name }}</h3>
         </q-card-section>
         <q-card-section>
-            <div style="width: 70%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
+            <div style="width: 90%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
             <div class="card-link">
                 <LectureLink :lectureId="lecture_id">Video</LectureLink>
                 <LectureLink v-if="mod_lecture_id" :lectureId="mod_lecture_id">Mods</LectureLink>
