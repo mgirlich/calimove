@@ -1,3 +1,4 @@
+import datetime
 from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, BeforeValidator, computed_field, model_serializer
@@ -83,3 +84,10 @@ class WorkoutDetail(WorkoutBase):
             flow=FlowBase.model_validate(self.flow.model_dump()),
             exercises=exercises
         )
+
+
+class Execution(BaseModel):
+    execution_id: int
+    level: int
+    name: str
+    finished_at: datetime.datetime

@@ -175,3 +175,25 @@ def test_route_workouts_detail():
         with pytest.raises(fastapi.HTTPException) as err:
             app.route_workouts_detail(99, session)
         assert err.value.status_code == 404
+
+
+def test_route_executions():
+    with SessionLocal() as session:
+        executions_is = app.route_executions(session)
+        assert len(executions_is) == 0
+
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(flow1, 2)
+        w1 = models.Workout(lecture_id=1, n_sets=2, n_reps=1, durations="10;10", flow=flow1)
+        w2 = models.Workout(lecture_id=2, n_sets=2, n_reps=2, durations="10;10", flow=flow1)
+
+        time = datetime.datetime.now(datetime.UTC)
+        ex1 = models.Execution(workout=w1, finished_at=time)
+        ex2 = models.Execution(workout=w1, finished_at=time + datetime.timedelta(seconds=1))
+        ex3 = models.Execution(workout=w2, finished_at=time + datetime.timedelta(seconds=3))
+
+        session.add_all(flow_exercises + [ex1, ex2, ex3])
+        session.flush()
+
+        executions_is = app.route_executions(session)
+        assert len(executions_is) == 3

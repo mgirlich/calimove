@@ -126,3 +126,22 @@ def route_workouts_detail(workout_id: int, db: db_dependency) -> schemas.Workout
 
     workout = schemas.WorkoutDetail.model_validate(workout_model, from_attributes=True)
     return workout
+
+
+@app.get("/executions", status_code=status.HTTP_200_OK)
+def route_executions(db: db_dependency) -> list[schemas.Execution]:
+    executions_db = (
+        db.query(
+            models.Execution.execution_id,
+            models.Flow.level,
+            models.Flow.name,
+            models.Execution.finished_at,
+        )
+        .select_from(models.Execution)
+        .join(models.Workout)
+        .join(models.Flow)
+        .all()
+    )
+
+    executions = [schemas.Execution.model_validate(execution, from_attributes=True) for execution in executions_db]
+    return executions

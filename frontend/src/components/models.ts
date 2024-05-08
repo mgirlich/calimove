@@ -22,3 +22,10 @@ export interface WorkoutExercise extends ExerciseBase {
 export interface Flow extends FlowBase {
   exercises: Array<ExerciseBase>
 }
+
+export interface Execution {
+  execution_id: number;
+  level: number;
+  name: string;
+  finished_at: Date;
+}
