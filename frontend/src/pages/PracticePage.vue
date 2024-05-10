@@ -7,7 +7,9 @@
 
   <q-separator />
 
-  <div class="text-center"><a :href="lectureVideoUrl" target="_blank">Follow along video</a></div>
+  <div class="text-center">
+    <LectureLink :lectureId="lectureId" extra="#lecture_content_complete_button">Follow along video</LectureLink>
+  </div>
 
   <div class="row q-mt-md q-mx-auto justify-center">
     <q-card style="width: 40em;">
@@ -19,8 +21,8 @@
           <div class="col" v-if="curExercise">
             <div class="row justify-center"><q-img style="max-width: 16em;" :src="`/exercise_images/exercise_${curExercise.exercise_id}.png`"></q-img></div>
             <div class="row justify-center">
-              <a class="q-link" :href="lectureUrl(curExercise.lecture_id)">Video</a>
-              <template v-if="curExercise.mod_lecture_id"><a class="q-link mod-video" :href="lectureUrl(curExercise.mod_lecture_id)">Mods</a></template>
+              <LectureLink :lectureId="curExercise.lecture_id">Video</LectureLink>
+              <LectureLink v-if="curExercise.mod_lecture_id" :lectureId="curExercise.mod_lecture_id">Mods</LectureLink>
             </div>
           </div>
 
@@ -83,6 +85,7 @@ import { WorkoutExercise } from 'src/components/models';
 import SetRepBox from '../components/SetRepBox.vue';
 import PracticeControl from '../components/PracticeControl.vue';
 import HeadlineNavigation from '../components/HeadlineNavigation.vue';
+import LectureLink from 'src/components/LectureLink.vue';
 import { CountdownTimer, TimerState } from 'src/utils/CountdownTimer';
 import { useWakeLock } from 'src/utils/Wakelock';
 
@@ -155,14 +158,6 @@ function toggleTimer() {
   } else {
     wakeLock.release();
   }
-};
-
-const lectureVideoUrl = computed(() => {
-  return `https://www.calimove.com/courses/1467532/lectures/${lectureId.value}#lecture_content_complete_button`
-});
-
-function lectureUrl(lectureId: number) {
-    return `https://www.calimove.com/courses/1467532/lectures/${lectureId}`
 };
 
 

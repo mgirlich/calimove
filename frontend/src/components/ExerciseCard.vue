@@ -4,11 +4,10 @@
             <h3 class="text-h6">{{ name }}</h3>
         </q-card-section>
         <q-card-section>
-            <!-- <q-img :src="`/src/assets/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img> -->
             <div style="width: 70%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
             <div class="card-link">
-                <a class="q-link" :href="lecture_link(lecture_id)">Video</a>
-                <template v-if="mod_lecture_id"><a class="q-link mod-video" :href="lecture_link(mod_lecture_id)">Mods</a></template>
+                <LectureLink :lectureId="lecture_id">Video</LectureLink>
+                <LectureLink v-if="mod_lecture_id" :lectureId="mod_lecture_id">Mods</LectureLink>
             </div>
             <div v-if="flows">
                 <q-chip v-for="flow in flows" dense clickable
@@ -23,6 +22,7 @@
 
 <script setup lang="ts">
 import { FlowBase } from '../components/models';
+import LectureLink from './LectureLink.vue';
 
 defineProps({
   exercise_id: Number,
@@ -34,10 +34,6 @@ defineProps({
 
 function onLevelFlowChipClick(flow: FlowBase) {
   console.log(`${flow.level} - ${flow.name}`)
-}
-
-function lecture_link(lecture_id?: number) {
-  return `https://www.calimove.com/courses/1467532/lectures/${lecture_id}`
 }
 </script>
 
