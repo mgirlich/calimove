@@ -5,10 +5,10 @@
         </q-card-section>
         <q-card-section>
             <div style="width: 90%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
-            <div class="card-link">
-                <LectureLink :lectureId="lecture_id">Video</LectureLink>
-                <LectureLink v-if="mod_lecture_id" :lectureId="mod_lecture_id">Mods</LectureLink>
-            </div>
+            <ExerciseLinks
+              :lectureId="lecture_id"
+              :modLectureId="mod_lecture_id"
+            />
             <div v-if="flows">
                 <q-chip v-for="flow in flows" dense clickable
                   :key="flow.flow_id"
@@ -22,7 +22,7 @@
 
 <script setup lang="ts">
 import { FlowBase } from '../components/models';
-import LectureLink from './LectureLink.vue';
+import ExerciseLinks from './ExerciseLinks.vue';
 
 defineProps({
   exercise_id: Number,
@@ -44,23 +44,5 @@ h3 {
   height: 2em;
   text-align: center;
   line-height: 1.5rem;
-}
-
-.card-link {
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  padding-top: 0.5em;
-  font-family: Roboto,-apple-system,Avenir,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
-}
-
-.card-link a{
-  font-weight: 700;
-  font-size: 16;
-  letter-spacing: 0.7;
-}
-
-.mod-video {
-  padding-left: 1em;
 }
 </style>

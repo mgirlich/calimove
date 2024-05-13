@@ -20,10 +20,10 @@
         <div class="row">
           <div class="col" v-if="curExercise">
             <div class="row justify-center"><q-img style="max-width: 16em;" :src="`/exercise_images/exercise_${curExercise.exercise_id}.png`"></q-img></div>
-            <div class="row justify-center">
-              <LectureLink :lectureId="curExercise.lecture_id">Video</LectureLink>
-              <LectureLink v-if="curExercise.mod_lecture_id" :lectureId="curExercise.mod_lecture_id">Mods</LectureLink>
-            </div>
+            <ExerciseLinks
+              :lectureId="curExercise.lecture_id"
+              :modLectureId="curExercise.mod_lecture_id"
+            />
           </div>
 
           <div class="col">
@@ -86,6 +86,7 @@ import SetRepBox from '../components/SetRepBox.vue';
 import PracticeControl from '../components/PracticeControl.vue';
 import HeadlineNavigation from '../components/HeadlineNavigation.vue';
 import LectureLink from 'src/components/LectureLink.vue';
+import ExerciseLinks from 'src/components/ExerciseLinks.vue';
 import { CountdownTimer, TimerState } from 'src/utils/CountdownTimer';
 import { useWakeLock } from 'src/utils/Wakelock';
 

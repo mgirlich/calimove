@@ -22,7 +22,3 @@ const lectureUrl = computed(() => {
   return url;
 });
 </script>
-
-<style>
-
-</style>
