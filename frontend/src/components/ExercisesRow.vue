@@ -10,8 +10,7 @@
       :mod_lecture_id="exercise.mod_lecture_id"
       :flows="isExercise(exercise) ? exercise.flows : []"
 
-      class="exercise-card col-xs-6 col-sm-4 col-md-2 col-lg-2"
-      style="padding: 1em 1em;"
+      class="exercise-card col-xs-6 col-sm-4 col-lg-2"
     />
   </div>
 </template>

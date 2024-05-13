@@ -12,9 +12,9 @@
   </div>
 
   <div class="row q-mt-md q-mx-auto justify-center">
-    <q-card style="width: 40em;">
+    <q-card style="min-width: 26em; max-width: 40em;">
       <q-card-section>
-        <h3 class="text-h5" style="height: 100%" v-if="curExercise">{{ curExercise.name }}</h3>
+        <h3 class="text-h5 full-height" v-if="curExercise">{{ curExercise.name }}</h3>
       </q-card-section>
       <q-card-section>
         <div class="row">
@@ -27,9 +27,9 @@
           </div>
 
           <div class="col">
-            <div class="column items-center" style="height: 100%">
+            <div class="column items-center full-height">
               <div class="col content-center">
-                <p class="text-weight-bold text-h2" style="letter-spacing: 3px;">
+                <p class="text-weight-bold text-h3" style="letter-spacing: 3px;">
                   {{ timeFormatted }}
                 </p>
               </div>

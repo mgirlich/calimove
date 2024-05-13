@@ -12,7 +12,7 @@
     <q-btn
       v-for="workout in workouts"
       rounded
-      style="margin: 0em 0em;"
+      style="margin: 0em 0.5em; max-width: 10em;"
       :key="workout.workout_id"
       :color="workoutChosen === workout.workout_id ? 'primary' : 'secondary'"
       @click="workoutChosen = workout.workout_id"

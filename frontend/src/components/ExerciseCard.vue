@@ -1,9 +1,10 @@
 <template>
-    <q-card class="col-2" style="margin: 1em 1em;">
+    <div class="q-pa-sm">
+    <q-card class="col-2">
         <q-card-section style="padding-top: 10px; padding-bottom: 10px;">
             <h3 class="text-h6">{{ name }}</h3>
         </q-card-section>
-        <q-card-section>
+        <q-card-section class="q-pa-sm">
             <div style="width: 90%; margin: auto;"><q-img :src="`/exercise_images/exercise_${exercise_id}.png`" width="100%"></q-img></div>
             <ExerciseLinks
               :lectureId="lecture_id"
@@ -18,6 +19,7 @@
             </div>
         </q-card-section>
     </q-card>
+  </div>
 </template>
 
 <script setup lang="ts">
