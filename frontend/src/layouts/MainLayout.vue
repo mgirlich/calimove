@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -19,16 +19,12 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
+      side="left"
       show-if-above
       bordered
+      :width=150
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
         <MenuLink
           v-for="link in linksList"
           :key="link.title"
