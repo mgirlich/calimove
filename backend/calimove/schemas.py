@@ -86,6 +86,10 @@ class WorkoutDetail(WorkoutBase):
         )
 
 
+class WorkoutPost(BaseModel):
+    workout_id: int
+
+
 class Execution(BaseModel):
     execution_id: int
     level: int

@@ -145,3 +145,12 @@ def route_executions(db: db_dependency) -> list[schemas.Execution]:
 
     executions = [schemas.Execution.model_validate(execution, from_attributes=True) for execution in executions_db]
     return executions
+
+
+@app.post("/executions", status_code=status.HTTP_200_OK)
+def route_add_execution(workout: schemas.WorkoutPost, db: db_dependency):
+    execution_db = models.Execution(**workout.model_dump())
+    db.add(execution_db)
+    db.commit()
+
+    return

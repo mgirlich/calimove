@@ -78,7 +78,7 @@
 <script setup lang="ts">
 import { api } from 'src/boot/axios';
 import { computed, onBeforeMount, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { laBackwardSolid, laForwardSolid, laPlaySolid, laPauseSolid } from '@quasar/extras/line-awesome';
 
 import { WorkoutExercise } from 'src/components/models';
@@ -104,6 +104,7 @@ enum PracticeState {
 };
 
 const route = useRoute();
+const router = useRouter();
 const workoutId = route.params.workout_id;
 
 const flowId = ref<number>();
@@ -328,7 +329,8 @@ function logWorkout() {
   .then(() => {
     showLoggedWorkout.value = true;
     successfullyLogged.value = true;
-    console.log('Successfully logged workout')
+
+    setTimeout(() => router.push('/log'), 2000);
   })
   .catch((err) => {
     console.log(err);

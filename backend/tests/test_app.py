@@ -197,3 +197,19 @@ def test_route_executions():
 
         executions_is = app.route_executions(session)
         assert len(executions_is) == 3
+
+
+def test_route_add_execution():
+    with SessionLocal() as session:
+        flow1 = models.Flow(level=1, name="A")
+        flow_exercises = create_flow_exercises(flow1, 2)
+        w1 = models.Workout(lecture_id=1, n_sets=2, n_reps=1, durations="10;10", flow=flow1)
+        session.add_all(flow_exercises + [w1])
+        session.flush()
+
+        workout_post = schemas.WorkoutPost(workout_id=w1.workout_id)
+        app.route_add_execution(workout_post, session)
+
+        executions = session.query(models.Execution).all()
+        assert len(executions) == 1
+        assert executions[0].workout_id == w1.workout_id
