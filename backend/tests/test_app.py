@@ -179,8 +179,8 @@ def test_route_workouts_detail():
 
 def test_route_executions():
     with SessionLocal() as session:
-        executions_is = app.route_executions(session)
-        assert len(executions_is) == 0
+        log_is = app.route_executions(session)
+        assert log_is == schemas.Log(max_streak=0, cur_streak=0, weekday_count={i: 0 for i in range(7)}, total=0)
 
         flow1 = models.Flow(level=1, name="A")
         flow_exercises = create_flow_exercises(flow1, 2)
@@ -189,14 +189,16 @@ def test_route_executions():
 
         time = datetime.datetime.now(datetime.UTC)
         ex1 = models.Execution(workout=w1, finished_at=time)
-        ex2 = models.Execution(workout=w1, finished_at=time + datetime.timedelta(seconds=1))
-        ex3 = models.Execution(workout=w2, finished_at=time + datetime.timedelta(seconds=3))
+        ex2 = models.Execution(workout=w1, finished_at=time + datetime.timedelta(days=1))
+        ex3 = models.Execution(workout=w2, finished_at=time + datetime.timedelta(days=3))
 
         session.add_all(flow_exercises + [ex1, ex2, ex3])
         session.flush()
 
-        executions_is = app.route_executions(session)
-        assert len(executions_is) == 3
+        log_is = app.route_executions(session)
+        assert log_is.max_streak == 2
+        assert log_is.cur_streak == 1
+        assert log_is.total == 3
 
 
 def test_route_add_execution():

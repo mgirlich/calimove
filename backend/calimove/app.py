@@ -1,3 +1,5 @@
+import collections
+import datetime
 from typing import Annotated
 
 import sqlalchemy as sa
@@ -128,8 +130,46 @@ def route_workouts_detail(workout_id: int, db: db_dependency) -> schemas.Workout
     return workout
 
 
+def get_streaks(executions: list[models.Execution]):
+    streaks = []
+    if len(executions) == 0:
+        return streaks
+
+    cur_streak = 1
+    date_prev = executions[0].finished_at.date()
+    for execution in executions:
+        date_cur = execution.finished_at.date()
+        days_gap = (date_cur - date_prev).days
+        date_prev = date_cur
+        if days_gap == 0:
+            continue
+        elif days_gap == 1:
+            cur_streak += 1
+        else:
+            streaks.append(cur_streak)
+            cur_streak = 1
+    streaks.append(cur_streak)
+
+    return streaks
+
+
+def get_streak_info(executions: list[models.Execution]):
+    streaks = get_streaks(executions)
+
+    yesterday = datetime.date.today() - datetime.timedelta(days=1)
+    if len(executions) > 0 and executions[-1].finished_at.date() >= yesterday:
+        cur_streak = streaks[-1]
+    else:
+        cur_streak = 0
+
+    return dict(
+        max_streak=max(streaks, default=0),
+        cur_streak=cur_streak
+    )
+
+
 @app.get("/executions", status_code=status.HTTP_200_OK)
-def route_executions(db: db_dependency) -> list[schemas.Execution]:
+def route_executions(db: db_dependency) -> schemas.Log:
     executions_db = (
         db.query(
             models.Execution.execution_id,
@@ -140,11 +180,24 @@ def route_executions(db: db_dependency) -> list[schemas.Execution]:
         .select_from(models.Execution)
         .join(models.Workout)
         .join(models.Flow)
+        .order_by(models.Execution.finished_at)
         .all()
     )
-
     executions = [schemas.Execution.model_validate(execution, from_attributes=True) for execution in executions_db]
-    return executions
+
+    streak_info = get_streak_info(executions)
+
+    weekday_count = collections.Counter({i: 0 for i in range(7)})
+    for execution in executions:
+        weekday_count[execution.finished_at.weekday()] += 1
+
+    out = schemas.Log(
+        max_streak=streak_info["max_streak"],
+        cur_streak=streak_info["cur_streak"],
+        weekday_count=collections.OrderedDict(weekday_count),
+        total=len(executions),
+    )
+    return out
 
 
 @app.post("/executions", status_code=status.HTTP_200_OK)

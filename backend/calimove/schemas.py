@@ -1,3 +1,4 @@
+import collections
 import datetime
 from typing import Annotated
 
@@ -95,3 +96,10 @@ class Execution(BaseModel):
     level: int
     name: str
     finished_at: datetime.datetime
+
+
+class Log(BaseModel):
+    max_streak: int
+    cur_streak: int
+    weekday_count: collections.OrderedDict[int, int]
+    total: int
