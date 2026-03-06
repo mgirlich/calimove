@@ -3,6 +3,7 @@ import eslintPluginVue from 'eslint-plugin-vue'
 import ts from 'typescript-eslint'
 
 export default ts.config(
+  { ignores: ['src/types/database.generated.ts'] },
   ...ts.configs.recommended,
   ...eslintPluginVue.configs['flat/recommended'],
   ...oxlint.buildFromOxlintConfigFile('./oxlint.config.ts'),
