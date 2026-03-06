@@ -11,7 +11,7 @@
     "lint:eslint": "eslint src",
     "lint:oxlint": "oxlint src --type-aware",
     "lint": "pnpm lint:eslint && pnpm lint:oxlint",
-    "test": "vitest run",
+    "test": "vitest run --passWithNoTests",
     "typecheck": "vue-tsc -p ./tsconfig.app.json",
     "db:types": "npx supabase gen types typescript --linked > src/types/database.generated.ts",
     "db:seed": "echo 'Run scripts/seed.sql manually in the Supabase SQL Editor'",
