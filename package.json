@@ -1,0 +1,52 @@
+{
+  "name": "calimove",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "oxfmt",
+    "fix": "oxfmt && oxlint src --fix",
+    "lint:eslint": "eslint src",
+    "lint:oxlint": "oxlint src --type-aware",
+    "lint": "pnpm lint:eslint && pnpm lint:oxlint",
+    "test": "vitest run",
+    "typecheck": "vue-tsc -p ./tsconfig.app.json",
+    "db:types": "npx supabase gen types typescript --linked > src/types/database.generated.ts",
+    "db:seed": "echo 'Run scripts/seed.sql manually in the Supabase SQL Editor'",
+    "verify": "pnpm format && pnpm run lint && pnpm typecheck && pnpm test",
+    "prepare": "git config core.hooksPath .githooks"
+  },
+  "dependencies": {
+    "@nuxt/ui": "4.5.1",
+    "@supabase/supabase-js": "2.98.0",
+    "tailwindcss": "4.2.1",
+    "vue": "3.5.29",
+    "vue-router": "5.0.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "6.0.4",
+    "@vue/test-utils": "2.4.6",
+    "eslint": "10.0.2",
+    "eslint-plugin-oxlint": "1.51.0",
+    "eslint-plugin-vue": "10.8.0",
+    "jsdom": "28.1.0",
+    "lint-staged": "16.3.2",
+    "oxfmt": "0.36.0",
+    "oxlint": "1.51.0",
+    "oxlint-tsgolint": "0.16.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.56.1",
+    "vite": "7.3.1",
+    "vitest": "4.0.18",
+    "vue-tsc": "3.2.5"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,vue}": [
+      "oxlint --type-aware --fix",
+      "oxfmt --write --no-error-on-unmatched-pattern"
+    ]
+  },
+  "packageManager": "pnpm@10.30.3"
+}
