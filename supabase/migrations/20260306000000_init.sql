@@ -54,6 +54,9 @@ grant select on calimove.flows          to anon, authenticated;
 grant select on calimove.flow_exercises to anon, authenticated;
 grant select on calimove.workouts       to anon, authenticated;
 
+-- service_role bypasses RLS but still needs explicit privileges on custom schemas
+grant all on all tables in schema calimove to service_role;
+
 -- ==============================================================
 -- Executions — per-user, RLS protected
 -- ==============================================================

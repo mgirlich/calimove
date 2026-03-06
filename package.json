@@ -14,7 +14,8 @@
     "test": "vitest run --passWithNoTests",
     "typecheck": "vue-tsc -p ./tsconfig.app.json",
     "db:types": "npx supabase gen types typescript --linked > src/types/database.generated.ts",
-    "db:seed": "echo 'Run scripts/seed.sql manually in the Supabase SQL Editor'",
+    "db:extract": "bash scripts/extract.sh",
+    "db:seed": "node --env-file=.env.local scripts/seed.mjs",
     "verify": "pnpm format && pnpm run lint && pnpm typecheck && pnpm test",
     "prepare": "git config core.hooksPath .githooks"
   },

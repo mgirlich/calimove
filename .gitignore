@@ -32,3 +32,6 @@ tsconfig.node.tsbuildinfo
 
 # Environment variables
 .env
+
+# Seed script — extracted SQLite data (generated, not committed)
+scripts/data/

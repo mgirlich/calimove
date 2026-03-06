@@ -186,7 +186,7 @@ Supabase Auth will be used. Since this is a personal/small-group tool, new users
 
 ## Migration Plan
 
-### Phase 1 — Supabase schema + seed
+### Phase 1 — Supabase schema + seed ✅
 
 **Goal:** Supabase Postgres contains all data; the old SQLite is no longer needed.
 
