@@ -1,0 +1,290 @@
+[
+  {
+    "workout_id": 3,
+    "lecture_id": 41611715,
+    "flow_id": 1,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 80, 60, 60, 80, 60]
+  },
+  {
+    "workout_id": 4,
+    "lecture_id": 41611717,
+    "flow_id": 1,
+    "n_sets": 2,
+    "n_reps": 1,
+    "durations": [40, 40, 40, 40, 40, 60, 40, 40, 60, 60]
+  },
+  {
+    "workout_id": 7,
+    "lecture_id": 41611722,
+    "flow_id": 1,
+    "n_sets": 2,
+    "n_reps": 2,
+    "durations": [30, 30, 30, 30, 30, 30, 30, 30, 30, 40]
+  },
+  {
+    "workout_id": 10,
+    "lecture_id": 41634861,
+    "flow_id": 2,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 60, 60, 60, 60, 60, 60, 60, 60, 80]
+  },
+  {
+    "workout_id": 12,
+    "lecture_id": 41634996,
+    "flow_id": 2,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 40, 40, 40, 40, 40, 40, 40, 40, 60]
+  },
+  {
+    "workout_id": 14,
+    "lecture_id": 41634999,
+    "flow_id": 2,
+    "n_sets": 2,
+    "n_reps": 2,
+    "durations": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+  },
+  {
+    "workout_id": 17,
+    "lecture_id": 41646590,
+    "flow_id": 3,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 60, 60, 80, 80, 60, 60, 80, 60]
+  },
+  {
+    "workout_id": 19,
+    "lecture_id": 41646592,
+    "flow_id": 3,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 40, 40, 60, 60, 40, 40, 40, 40]
+  },
+  {
+    "workout_id": 21,
+    "lecture_id": 41646595,
+    "flow_id": 3,
+    "n_sets": 2,
+    "n_reps": 2,
+    "durations": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+  },
+  {
+    "workout_id": 24,
+    "lecture_id": 41670978,
+    "flow_id": 4,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 60, 60, 80, 60, 60, 60, 60, 80]
+  },
+  {
+    "workout_id": 26,
+    "lecture_id": 41670981,
+    "flow_id": 4,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 40, 40, 60, 40, 40, 40, 40, 60]
+  },
+  {
+    "workout_id": 28,
+    "lecture_id": 41672260,
+    "flow_id": 4,
+    "n_sets": 2,
+    "n_reps": 2,
+    "durations": [30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+  },
+  {
+    "workout_id": 33,
+    "lecture_id": 41971258,
+    "flow_id": 5,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 80, 60, 60, 80, 80, 60, 60, 80]
+  },
+  {
+    "workout_id": 34,
+    "lecture_id": 41971259,
+    "flow_id": 5,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 100, 80, 60, 80, 100, 80, 80, 80]
+  },
+  {
+    "workout_id": 36,
+    "lecture_id": 41971261,
+    "flow_id": 5,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 80, 50, 50, 60, 80, 60, 50, 60]
+  },
+  {
+    "workout_id": 39,
+    "lecture_id": 42328513,
+    "flow_id": 6,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 43,
+    "lecture_id": 42328517,
+    "flow_id": 6,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 80, 60, 80]
+  },
+  {
+    "workout_id": 44,
+    "lecture_id": 42328519,
+    "flow_id": 6,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [50, 50, 50, 50, 50, 50, 60, 50, 60, 50]
+  },
+  {
+    "workout_id": 47,
+    "lecture_id": 42334407,
+    "flow_id": 7,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 51,
+    "lecture_id": 42334411,
+    "flow_id": 7,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+  },
+  {
+    "workout_id": 52,
+    "lecture_id": 42334413,
+    "flow_id": 7,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [50, 50, 50, 50, 50, 50, 50, 50, 50, 50]
+  },
+  {
+    "workout_id": 54,
+    "lecture_id": 42393514,
+    "flow_id": 8,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 58,
+    "lecture_id": 42393518,
+    "flow_id": 8,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 60, 80, 80]
+  },
+  {
+    "workout_id": 59,
+    "lecture_id": 42393520,
+    "flow_id": 8,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [50, 50, 50, 50, 50, 50, 50, 60, 50, 50]
+  },
+  {
+    "workout_id": 66,
+    "lecture_id": 42429558,
+    "flow_id": 9,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 67,
+    "lecture_id": 42429559,
+    "flow_id": 9,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+  },
+  {
+    "workout_id": 69,
+    "lecture_id": 42429591,
+    "flow_id": 9,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 73,
+    "lecture_id": 42440976,
+    "flow_id": 11,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 74,
+    "lecture_id": 42440977,
+    "flow_id": 11,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 60, 80, 80]
+  },
+  {
+    "workout_id": 76,
+    "lecture_id": 42440979,
+    "flow_id": 11,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 82,
+    "lecture_id": 42475010,
+    "flow_id": 10,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 83,
+    "lecture_id": 42475012,
+    "flow_id": 10,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [80, 80, 80, 80, 80, 80, 80, 80, 80, 80]
+  },
+  {
+    "workout_id": 85,
+    "lecture_id": 42475014,
+    "flow_id": 10,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 90,
+    "lecture_id": 43502829,
+    "flow_id": 12,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [40, 40, 40, 40, 40, 40, 40, 40, 40, 60]
+  },
+  {
+    "workout_id": 93,
+    "lecture_id": 43502832,
+    "flow_id": 12,
+    "n_sets": 1,
+    "n_reps": 1,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  },
+  {
+    "workout_id": 96,
+    "lecture_id": 43502835,
+    "flow_id": 12,
+    "n_sets": 1,
+    "n_reps": 2,
+    "durations": [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
+  }
+]

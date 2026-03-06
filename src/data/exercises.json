@@ -1,0 +1,1266 @@
+[
+  {
+    "exercise_id": 74,
+    "lecture_id": 40595674,
+    "name": "3D Triangle",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 67,
+    "lecture_id": 40595642,
+    "name": "Advanced Deep Squat Reach",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 68,
+    "lecture_id": 40595668,
+    "name": "Advanced Knee Stance Flow",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 56,
+    "lecture_id": 40595659,
+    "name": "Advanced Pancake",
+    "mod_lecture_id": 40595729,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      },
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 70,
+    "lecture_id": 40595602,
+    "name": "Archer Scapula Raise",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 40,
+    "lecture_id": 40595632,
+    "name": "Archer Squat Flow",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 64,
+    "lecture_id": 40594873,
+    "name": "Back Bridge Circles",
+    "mod_lecture_id": 40594875,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 39,
+    "lecture_id": 40595610,
+    "name": "Back Bridge Push Up",
+    "mod_lecture_id": 40595698,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 71,
+    "lecture_id": 40595612,
+    "name": "Back Bridge Walk",
+    "mod_lecture_id": 40595701,
+    "flows": [
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 62,
+    "lecture_id": 40595643,
+    "name": "Bunny Ears",
+    "mod_lecture_id": 40595718,
+    "flows": [
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 80,
+    "lecture_id": 40595681,
+    "name": "Butterfly Shifts",
+    "mod_lecture_id": 40595742,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 33,
+    "lecture_id": 40595679,
+    "name": "Butterfly Sit",
+    "mod_lecture_id": 40595740,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 51,
+    "lecture_id": 40595680,
+    "name": "Butterfly To Pike Stand",
+    "mod_lecture_id": 40595741,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 9,
+    "lecture_id": 40595593,
+    "name": "Crab Walk Square",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      },
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 76,
+    "lecture_id": 40595633,
+    "name": "Crac Pidgeon",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 52,
+    "lecture_id": 40595604,
+    "name": "Cupboard Wipes",
+    "mod_lecture_id": 40595692,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 83,
+    "lecture_id": 40595597,
+    "name": "Dancing Dog",
+    "mod_lecture_id": 40595687,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 17,
+    "lecture_id": 40595646,
+    "name": "Deep Squat Circles",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 41,
+    "lecture_id": 40595636,
+    "name": "Deep Squat Reach",
+    "mod_lecture_id": 40595713,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 27,
+    "lecture_id": 40595639,
+    "name": "Deep Squat Single Leg Drop",
+    "mod_lecture_id": 40595715,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 45,
+    "lecture_id": 40595596,
+    "name": "Dog And Pike Reach",
+    "mod_lecture_id": 40595686,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 7,
+    "lecture_id": 40595638,
+    "name": "Dynamic Deep Squat",
+    "mod_lecture_id": 40595714,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 38,
+    "lecture_id": 40594872,
+    "name": "Easy Bridge Circles",
+    "mod_lecture_id": 40594874,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 13,
+    "lecture_id": 40594398,
+    "name": "Easy Bridge Rocks",
+    "mod_lecture_id": 40618494,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 30,
+    "lecture_id": 40594466,
+    "name": "Easy Bridge To Pike Sit",
+    "mod_lecture_id": 40594475,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 12,
+    "lecture_id": 41646750,
+    "name": "Elbow Circles CC",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      },
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 22,
+    "lecture_id": 40593453,
+    "name": "Elbow Circles OC",
+    "mod_lecture_id": 40593464,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      },
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      },
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 2,
+    "lecture_id": 41646663,
+    "name": "Elbow Pit Rotations CC",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 29,
+    "lecture_id": 40593469,
+    "name": "Elbow Pit Rotations OC",
+    "mod_lecture_id": 40593468,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      },
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 37,
+    "lecture_id": 40593510,
+    "name": "Elbow Side Circles",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 10,
+    "lecture_id": 40595671,
+    "name": "Eye Circles",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 28,
+    "lecture_id": 40595673,
+    "name": "Eye Compass",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 6,
+    "lecture_id": 41646677,
+    "name": "Fibula Rotation",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 5,
+    "lecture_id": 40595619,
+    "name": "Figure 4 Sit And Switch",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 47,
+    "lecture_id": 40595620,
+    "name": "Figure 4 Stand Up And Switch",
+    "mod_lecture_id": 40595705,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 55,
+    "lecture_id": 40595655,
+    "name": "Foot Pull",
+    "mod_lecture_id": 40595724,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 34,
+    "lecture_id": 40595652,
+    "name": "Foot Tilt Walk",
+    "mod_lecture_id": 40595722,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 77,
+    "lecture_id": 40595677,
+    "name": "Frog Lifts",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 15,
+    "lecture_id": 41646759,
+    "name": "Frog Rocks",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 57,
+    "lecture_id": 40595676,
+    "name": "Frog Single Lifts",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 24,
+    "lecture_id": 40595611,
+    "name": "Head Bridge",
+    "mod_lecture_id": 40595699,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 53,
+    "lecture_id": 42452944,
+    "name": "Hip Figure 8",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 59,
+    "lecture_id": 40595626,
+    "name": "Hip Pendulum Kicks",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 65,
+    "lecture_id": 40595616,
+    "name": "Hollow Rolls",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 48,
+    "lecture_id": 40595635,
+    "name": "Horse Stance",
+    "mod_lecture_id": 40595712,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 72,
+    "lecture_id": 40595743,
+    "name": "Hurdle Sit Switches",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 50,
+    "lecture_id": 40595669,
+    "name": "Hurdle To Cross Sit",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 49,
+    "lecture_id": 40595665,
+    "name": "Jefferson Curl",
+    "mod_lecture_id": 40595733,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 63,
+    "lecture_id": 40593515,
+    "name": "Kimura",
+    "mod_lecture_id": 40593549,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 43,
+    "lecture_id": 40595667,
+    "name": "Knee Stance Flow",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 19,
+    "lecture_id": 40595666,
+    "name": "Kneeling Flow",
+    "mod_lecture_id": 40595734,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      },
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 54,
+    "lecture_id": 40595649,
+    "name": "Ktg Lunges",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 60,
+    "lecture_id": 40595656,
+    "name": "Lunge Foot Circles",
+    "mod_lecture_id": 40595725,
+    "flows": [
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 26,
+    "lecture_id": 40595648,
+    "name": "Lunge Rocks",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 20,
+    "lecture_id": 40595628,
+    "name": "Lunge To Kneeling Pistol",
+    "mod_lecture_id": 40595709,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 78,
+    "lecture_id": 40595599,
+    "name": "Lying Stick Dislocations",
+    "mod_lecture_id": 40595689,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 75,
+    "lecture_id": 40595603,
+    "name": "One Arm Scapula Raise",
+    "mod_lecture_id": 40595691,
+    "flows": [
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 81,
+    "lecture_id": 40595644,
+    "name": "Overhead Squat",
+    "mod_lecture_id": 40595719,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 18,
+    "lecture_id": 40595658,
+    "name": "Pancake",
+    "mod_lecture_id": 40595727,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      },
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 73,
+    "lecture_id": 40595660,
+    "name": "Pancake Side Switch",
+    "mod_lecture_id": 40595730,
+    "flows": [
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 23,
+    "lecture_id": 40595600,
+    "name": "Passive Hang",
+    "mod_lecture_id": 40595690,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 58,
+    "lecture_id": 40595601,
+    "name": "Passive To Active Hang",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 61,
+    "lecture_id": 42453187,
+    "name": "Pike Sit",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 69,
+    "lecture_id": 40595678,
+    "name": "Pike Sit Bend",
+    "mod_lecture_id": 40595738,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 82,
+    "lecture_id": 40595645,
+    "name": "Pistol Walk",
+    "mod_lecture_id": 40595720,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 21,
+    "lecture_id": 41646823,
+    "name": "Quadruped Wrist Circles",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      },
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 31,
+    "lecture_id": 40595613,
+    "name": "Segment Spine Mobilization",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 42,
+    "lecture_id": 40595662,
+    "name": "Sitting Leg Raise",
+    "mod_lecture_id": 40595732,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 8,
+    "lecture_id": 40595663,
+    "name": "Sitting Single Leg Raise",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 46,
+    "lecture_id": 40595607,
+    "name": "Spinal Wave",
+    "mod_lecture_id": 40595695,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      },
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 66,
+    "lecture_id": 40595621,
+    "name": "Squat Figure 4 Drop",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 16,
+    "lecture_id": 40595624,
+    "name": "Standing Knee Circles",
+    "mod_lecture_id": 40595707,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 25,
+    "lecture_id": 40595629,
+    "name": "Standing Scale Touch Circle",
+    "mod_lecture_id": 40595710,
+    "flows": [
+      {
+        "flow_id": 3,
+        "level": 1,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 32,
+    "lecture_id": 40595631,
+    "name": "Standing Slide Circle",
+    "mod_lecture_id": 40595711,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 4,
+    "lecture_id": 40595608,
+    "name": "Sternum Square",
+    "mod_lecture_id": 40595696,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 7,
+        "level": 2,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 3,
+    "lecture_id": 40595598,
+    "name": "Stick Dislocations",
+    "mod_lecture_id": 40595688,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      }
+    ]
+  },
+  {
+    "exercise_id": 35,
+    "lecture_id": 41679199,
+    "name": "Tea Cup",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      },
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 14,
+    "lecture_id": 40595609,
+    "name": "Torso Rotations",
+    "mod_lecture_id": 40595697,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 79,
+    "lecture_id": 40595641,
+    "name": "Wide Deep Squat Tilt",
+    "mod_lecture_id": 40595716,
+    "flows": [
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 44,
+    "lecture_id": 40593178,
+    "name": "Wrist Backside Circles",
+    "mod_lecture_id": 40593207,
+    "flows": [
+      {
+        "flow_id": 6,
+        "level": 2,
+        "name": "B"
+      },
+      {
+        "flow_id": 10,
+        "level": 3,
+        "name": "B"
+      }
+    ]
+  },
+  {
+    "exercise_id": 11,
+    "lecture_id": 40593343,
+    "name": "Wrist Figure 8",
+    "mod_lecture_id": 40593354,
+    "flows": [
+      {
+        "flow_id": 2,
+        "level": 1,
+        "name": "B"
+      },
+      {
+        "flow_id": 4,
+        "level": 1,
+        "name": "D"
+      },
+      {
+        "flow_id": 8,
+        "level": 2,
+        "name": "D"
+      },
+      {
+        "flow_id": 12,
+        "level": 3,
+        "name": "D"
+      }
+    ]
+  },
+  {
+    "exercise_id": 1,
+    "lecture_id": 40593214,
+    "name": "Wrist Flexion",
+    "mod_lecture_id": 40593247,
+    "flows": [
+      {
+        "flow_id": 1,
+        "level": 1,
+        "name": "A"
+      },
+      {
+        "flow_id": 11,
+        "level": 3,
+        "name": "C"
+      }
+    ]
+  },
+  {
+    "exercise_id": 36,
+    "lecture_id": 42318709,
+    "name": "Wrist Shift OC",
+    "mod_lecture_id": null,
+    "flows": [
+      {
+        "flow_id": 5,
+        "level": 2,
+        "name": "A"
+      },
+      {
+        "flow_id": 9,
+        "level": 3,
+        "name": "A"
+      }
+    ]
+  }
+]

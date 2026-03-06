@@ -211,7 +211,7 @@ Supabase Auth will be used. Since this is a personal/small-group tool, new users
 
 ---
 
-### Phase 2 — Static data build step
+### Phase 2 — Static data build step ✅
 
 **Goal:** Exercises, flows, and workouts are baked into the app at build time — zero runtime Supabase reads for static content.
 
