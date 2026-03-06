@@ -24,6 +24,7 @@ Run a single test file: `pnpm test -- path/to/file.test.ts`
 ## Architecture
 
 This is a Vue 3 SPA (not Nuxt) using:
+
 - **Vite** as the build tool
 - **vue-router** with file-based routing via `vue-router/vite` plugin — pages go in `src/pages/`, routes are auto-generated into `src/route-map.d.ts`
 - **Nuxt UI** (`@nuxt/ui`) as the component library, registered as a Vue plugin in `src/main.ts` and as a Vite plugin in `vite.config.ts`. The theme uses `primary: green`, `neutral: zinc`.
@@ -32,9 +33,19 @@ This is a Vue 3 SPA (not Nuxt) using:
 
 The app entry is `src/main.ts`, root component is `src/App.vue`, and global CSS is at `src/assets/css/main.css`.
 
+## Development Workflow
+
+This project follows a commit-by-commit approval process:
+
+- Run `pnpm verify` before every commit — it must pass cleanly
+- Write tests for each commit where testing makes sense
+- Wait for explicit user approval before committing
+- See `research.md` for the full migration plan and phase status
+
 ## Linting Rules
 
 Key constraints enforced by `oxlint.config.ts`:
+
 - No barrel files (`oxc/no-barrel-file`) — import directly from source files
 - No default exports (`import/no-default-export`) — exception for `src/locales/*.ts`
 - No circular imports (`import/no-cycle`)
