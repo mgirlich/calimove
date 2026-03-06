@@ -16,6 +16,7 @@
     "db:types": "npx supabase gen types typescript --linked > src/types/database.generated.ts",
     "db:extract": "bash scripts/extract.sh",
     "db:seed": "node --env-file=.env.local scripts/seed.mjs",
+    "data:generate": "node --env-file=.env.local scripts/generate-data.mjs",
     "verify": "pnpm format && pnpm run lint && pnpm typecheck && pnpm test",
     "prepare": "git config core.hooksPath .githooks"
   },
