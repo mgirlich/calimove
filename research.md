@@ -248,7 +248,7 @@ Streak and weekday distribution logic (currently Python) moves to `src/utils/sta
 
 ---
 
-### Phase 4 — Auth pages + route guard
+### Phase 4 — Auth pages + route guard ✅
 
 **Goal:** App requires login; unauthenticated users see only the login page.
 
