@@ -80,13 +80,15 @@ describe('CountdownTimer', () => {
     timer.destroy()
   })
 
-  it('calls onAlert near the alert threshold', () => {
+  it('calls onAlert at the exact second boundary', () => {
     const onAlert = vi.fn()
-    // 10s timer, alert at 3s remaining → fires after ~7s
+    // 10s timer, alert at 3s remaining → fires at exactly 7s elapsed
     const timer = new CountdownTimer(10, vi.fn(), vi.fn(), onAlert, 3)
     timer.start()
-    vi.advanceTimersByTime(7_500)
-    expect(onAlert).toHaveBeenCalled()
+    vi.advanceTimersByTime(6_900)
+    expect(onAlert).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(100)
+    expect(onAlert).toHaveBeenCalledOnce()
     timer.destroy()
   })
 

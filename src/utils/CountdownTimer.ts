@@ -56,7 +56,7 @@ export class CountdownTimer {
     this.msLeft -= dt
     this.timeLastUpdate = Date.now()
 
-    if (this.msLeft <= this.nextAlertAt + 500) {
+    if (this.msLeft <= this.nextAlertAt) {
       this.onAlert?.()
       this.nextAlertAt -= 1000
     }
