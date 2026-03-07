@@ -3,11 +3,14 @@ import { computed } from 'vue'
 
 import { useLog } from '../composables/useLog'
 import { useNextFlow } from '../composables/useNextFlow'
+import flowsData from '../data/flows.json'
 import workoutsData from '../data/workouts.json'
-import type { Workout } from '../types/data'
-import { workoutTimeLabel, middleWorkout } from '../utils/workout'
+import type { Flow, Workout } from '../types/data'
+import { middleWorkout, workoutTimeLabel } from '../utils/workout'
 
 const workouts = workoutsData as Workout[]
+const flows = flowsData as Flow[]
+const flowMap = new Map(flows.map((f) => [f.flow_id, f]))
 
 const log = useLog()
 const nextFlow = useNextFlow()
@@ -17,10 +20,34 @@ const nextWorkout = computed(() => {
   const flowWorkouts = workouts.filter((w) => w.flow_id === nextFlow.value!.flow_id)
   return middleWorkout(flowWorkouts) ?? null
 })
+
+// Weekday chart: Mon–Sun order (indices 1–6, then 0)
+const orderedWeekdayStats = computed(() => {
+  if (log.value.weekdayStats.length === 0) return []
+  return [1, 2, 3, 4, 5, 6, 0].map((i) => log.value.weekdayStats[i]!)
+})
+
+const maxWeekdayCount = computed(() => Math.max(...log.value.weekdayStats.map((s) => s.count), 1))
+
+const recentExecutions = computed(() => log.value.executions.toReversed())
+
+function flowLabel(flowId: number) {
+  const f = flowMap.get(flowId)
+  return f ? `Level ${f.level} · Flow ${f.name}` : `Flow ${flowId}`
+}
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString(undefined, {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+}
 </script>
 
 <template>
   <UContainer class="page-content space-y-10 max-w-2xl">
+    <!-- Next workout -->
     <section>
       <p class="section-heading">Your next workout</p>
 
@@ -51,53 +78,78 @@ const nextWorkout = computed(() => {
       </UCard>
     </section>
 
+    <!-- Stats -->
     <section>
       <p class="section-heading">Stats</p>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-3 gap-4">
         <UCard>
           <p class="stat-value">{{ log.streaks.current }}</p>
-          <p class="stat-label">Day streak</p>
+          <p class="stat-label">Streak</p>
+        </UCard>
+
+        <UCard>
+          <p class="stat-value">{{ log.streaks.max }}</p>
+          <p class="stat-label">Best streak</p>
         </UCard>
 
         <UCard>
           <p class="stat-value">{{ log.streaks.total }}</p>
-          <p class="stat-label">Total workouts</p>
+          <p class="stat-label">Total</p>
         </UCard>
       </div>
     </section>
 
+    <!-- Weekday distribution -->
+    <section v-if="orderedWeekdayStats.length > 0">
+      <p class="section-heading">By day of week</p>
+
+      <UCard>
+        <div class="grid grid-cols-7 gap-1">
+          <div
+            v-for="s in orderedWeekdayStats"
+            :key="s.day"
+            class="flex flex-col items-center gap-2"
+          >
+            <div class="h-16 w-full flex flex-col justify-end">
+              <div
+                class="w-full rounded-t-sm bg-primary transition-all"
+                :class="s.count === 0 ? 'opacity-20' : ''"
+                :style="{
+                  height: s.count === 0 ? '2px' : `${(s.count / maxWeekdayCount) * 100}%`,
+                }"
+              />
+            </div>
+            <p class="text-xs text-muted">{{ s.label }}</p>
+          </div>
+        </div>
+      </UCard>
+    </section>
+
+    <!-- Recent workouts -->
     <section>
-      <p class="section-heading">Explore</p>
+      <p class="section-heading">Recent workouts</p>
 
-      <div class="grid grid-cols-3 gap-4">
-        <RouterLink to="/exercises">
-          <UCard class="nav-card">
-            <div class="nav-card-content">
-              <UIcon name="i-lucide-dumbbell" class="nav-card-icon" />
-              <p class="nav-card-label">Exercises</p>
-            </div>
-          </UCard>
-        </RouterLink>
+      <UCard v-if="log.loading">
+        <p class="text-sm text-muted">Loading…</p>
+      </UCard>
 
-        <RouterLink to="/flows">
-          <UCard class="nav-card">
-            <div class="nav-card-content">
-              <UIcon name="i-lucide-list" class="nav-card-icon" />
-              <p class="nav-card-label">Flows</p>
-            </div>
-          </UCard>
-        </RouterLink>
+      <UCard v-else-if="recentExecutions.length === 0">
+        <p class="text-sm text-muted">No workouts logged yet.</p>
+      </UCard>
 
-        <RouterLink to="/log">
-          <UCard class="nav-card">
-            <div class="nav-card-content">
-              <UIcon name="i-lucide-bar-chart-2" class="nav-card-icon" />
-              <p class="nav-card-label">Log</p>
-            </div>
-          </UCard>
-        </RouterLink>
-      </div>
+      <UCard v-else>
+        <ul class="divide-y divide-(--ui-border)">
+          <li
+            v-for="e in recentExecutions"
+            :key="e.execution_id"
+            class="flex items-center justify-between py-2 first:pt-0 last:pb-0"
+          >
+            <span class="text-sm font-medium">{{ flowLabel(e.flow_id) }}</span>
+            <span class="text-sm text-muted">{{ formatDate(e.finished_at) }}</span>
+          </li>
+        </ul>
+      </UCard>
     </section>
   </UContainer>
 </template>
