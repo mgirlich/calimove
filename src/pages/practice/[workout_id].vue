@@ -104,31 +104,28 @@ function handleTimerFinished() {
   isRunning.value = true
 }
 
+function posIndex(): number {
+  const nExercises = exercises.length
+  const nReps = workout!.n_reps
+  return (curSet.value - 1) * nExercises * nReps + curExerciseIdx.value * nReps + (curRep.value - 1)
+}
+
+function applyIndex(idx: number) {
+  const nExercises = exercises.length
+  const nReps = workout!.n_reps
+  curSet.value = Math.floor(idx / (nExercises * nReps)) + 1
+  curExerciseIdx.value = Math.floor(idx / nReps) % nExercises
+  curRep.value = (idx % nReps) + 1
+}
+
 function nextRep() {
-  const nReps = workout?.n_reps ?? 1
-  const nSets = workout?.n_sets ?? 1
-  const isLastRep = curRep.value === nReps
-  const isLastExercise = curExerciseIdx.value === exercises.length - 1
-  const isLastSet = curSet.value === nSets
-
-  practiceState.value = 'rest'
-
-  if (!isLastRep) {
-    curRep.value++
+  const total = workout!.n_sets * exercises.length * workout!.n_reps
+  if (posIndex() >= total - 1) {
+    practiceState.value = 'finished'
     return
   }
-
-  if (isLastExercise) {
-    if (isLastSet) {
-      practiceState.value = 'finished'
-      return
-    }
-    curSet.value++
-    curExerciseIdx.value = 0
-  } else {
-    curExerciseIdx.value++
-  }
-  curRep.value = 1
+  practiceState.value = 'rest'
+  applyIndex(posIndex() + 1)
 }
 
 function resetToReady() {
@@ -153,47 +150,15 @@ function toggleTimer() {
 }
 
 function handleNextClick() {
-  if (practiceState.value === 'finished') return
-  const nReps = workout?.n_reps ?? 1
-  const nSets = workout?.n_sets ?? 1
-  const isLastRep = curRep.value === nReps
-  const isLastExercise = curExerciseIdx.value === exercises.length - 1
-  const isLastSet = curSet.value === nSets
-
-  if (!isLastRep) {
-    curRep.value++
-  } else if (!isLastExercise) {
-    curExerciseIdx.value++
-    curRep.value = 1
-  } else if (!isLastSet) {
-    curSet.value++
-    curExerciseIdx.value = 0
-    curRep.value = 1
-  }
-  // At the very end, stay put — let the timer finish naturally to auto-log
-
+  if (practiceState.value === 'finished' || !workout) return
+  const total = workout.n_sets * exercises.length * workout.n_reps
+  applyIndex(Math.min(posIndex() + 1, total - 1))
   resetToReady()
 }
 
 function handlePrevClick() {
-  if (practiceState.value === 'finished') return
-  const nReps = workout?.n_reps ?? 1
-  const isFirstRep = curRep.value === 1
-  const isFirstExercise = curExerciseIdx.value === 0
-  const isFirstSet = curSet.value === 1
-
-  if (!isFirstRep) {
-    curRep.value--
-  } else if (!isFirstExercise) {
-    curExerciseIdx.value--
-    curRep.value = nReps
-  } else if (!isFirstSet) {
-    curSet.value--
-    curExerciseIdx.value = exercises.length - 1
-    curRep.value = nReps
-  }
-  // At the very start, just reset to ready
-
+  if (practiceState.value === 'finished' || !workout) return
+  applyIndex(Math.max(posIndex() - 1, 0))
   resetToReady()
 }
 
@@ -233,10 +198,7 @@ const stateColorClass = computed<string>(() => {
 const progress = computed(() => {
   if (!workout || exercises.length === 0) return 0
   const total = workout.n_sets * exercises.length * workout.n_reps
-  const current =
-    (curSet.value - 1) * exercises.length * workout.n_reps +
-    curExerciseIdx.value * workout.n_reps +
-    (curRep.value - 1)
+  const current = posIndex()
   return total > 0 ? Math.round((current / total) * 100) : 0
 })
 

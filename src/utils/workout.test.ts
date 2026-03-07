@@ -2,14 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import type { Workout } from '../types/data'
 
-import {
-  formatMinutes,
-  middleWorkout,
-  timeActive,
-  timeBreak,
-  totalTime,
-  workoutTimeLabel,
-} from './workout'
+import { middleWorkout, timeActive, timeBreak, totalTime, workoutTimeLabel } from './workout'
 
 const workout = (overrides: Partial<Workout> = {}): Workout => ({
   workout_id: 1,
