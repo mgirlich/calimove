@@ -21,6 +21,9 @@ router.beforeEach(async (to) => {
     if (data.session) return '/'
     return true
   }
+  // Allow /update-password without a session — Supabase may not have
+  // exchanged the recovery hash tokens yet, and the page handles its own state.
+  if (to.path === '/update-password') return true
   if (!data.session) return '/login'
   return true
 })
