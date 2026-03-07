@@ -326,7 +326,7 @@ ready (8s) → workout (durations[i]s) → rest (15s) → next rep/exercise/set 
 
 ---
 
-### Phase 9 — Log page
+### Phase 9 — Log page ✅
 
 Port `LogPage`. Streak + weekday stats from `useLog()` (computed client-side from executions).
 

@@ -1,4 +1,4 @@
-import { ref, watchEffect } from 'vue'
+import { ref, watch } from 'vue'
 
 import { db } from '../lib/supabase'
 import type { Execution } from '../types/data'
@@ -26,42 +26,46 @@ export function useLog() {
     error: null,
   })
 
-  watchEffect(async () => {
-    if (!user.value) {
+  watch(
+    user,
+    async (u) => {
+      if (!u) {
+        state.value = {
+          executions: [],
+          streaks: { current: 0, max: 0, total: 0 },
+          weekdayStats: [],
+          loading: false,
+          error: null,
+        }
+        return
+      }
+
+      state.value.loading = true
+      state.value.error = null
+
+      const { data, error } = await db
+        .from('executions')
+        .select('*')
+        .order('finished_at', { ascending: true })
+        .returns<Execution[]>()
+
+      if (error) {
+        state.value.loading = false
+        state.value.error = error.message
+        return
+      }
+
+      const executions = data ?? []
       state.value = {
-        executions: [],
-        streaks: { current: 0, max: 0, total: 0 },
-        weekdayStats: [],
+        executions,
+        streaks: computeStreaks(executions),
+        weekdayStats: computeWeekdayStats(executions),
         loading: false,
         error: null,
       }
-      return
-    }
-
-    state.value.loading = true
-    state.value.error = null
-
-    const { data, error } = await db
-      .from('executions')
-      .select('*')
-      .order('finished_at', { ascending: true })
-      .returns<Execution[]>()
-
-    if (error) {
-      state.value.loading = false
-      state.value.error = error.message
-      return
-    }
-
-    const executions = data ?? []
-    state.value = {
-      executions,
-      streaks: computeStreaks(executions),
-      weekdayStats: computeWeekdayStats(executions),
-      loading: false,
-      error: null,
-    }
-  })
+    },
+    { immediate: true },
+  )
 
   return state
 }
