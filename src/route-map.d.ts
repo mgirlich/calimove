@@ -68,6 +68,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/practice/[workout_id]': RouteRecordInfo<
+      '/practice/[workout_id]',
+      '/practice/:workout_id',
+      { workout_id: ParamValue<true> },
+      { workout_id: ParamValue<false> },
+      | never
+    >,
   }
 
   /**
@@ -114,6 +121,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/login.vue': {
       routes:
         | '/login'
+      views:
+        | never
+    }
+    'src/pages/practice/[workout_id].vue': {
+      routes:
+        | '/practice/[workout_id]'
       views:
         | never
     }
