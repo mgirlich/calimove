@@ -1,5 +1,5 @@
 {
   "permissions": {
-    "allow": ["Bash(sqlite3:*)", "Bash(pnpm verify:*)"]
+    "allow": ["Bash(sqlite3:*)", "Bash(pnpm verify:*)", "Bash(pnpm eslint:*)"]
   }
 }
