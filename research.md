@@ -232,7 +232,7 @@ This also enables **offline browsing** of exercises and flows with no extra work
 
 ---
 
-### Phase 3 — Supabase client + live composables
+### Phase 3 — Supabase client + live composables ✅
 
 **Goal:** Auth session and execution logging wired up via `@supabase/supabase-js`.
 

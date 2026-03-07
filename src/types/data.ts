@@ -35,3 +35,12 @@ export interface Workout {
 export interface WorkoutExercise extends ExerciseBase {
   duration: number
 }
+
+// Execution row from Supabase (calimove.executions)
+export interface Execution {
+  execution_id: string // uuid
+  workout_id: number | null
+  flow_id: number
+  user_id: string // uuid
+  finished_at: string // ISO 8601
+}
