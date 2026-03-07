@@ -75,6 +75,13 @@ declare module 'vue-router/auto-routes' {
       { workout_id: ParamValue<false> },
       | never
     >,
+    '/update-password': RouteRecordInfo<
+      '/update-password',
+      '/update-password',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
   }
 
   /**
@@ -127,6 +134,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/practice/[workout_id].vue': {
       routes:
         | '/practice/[workout_id]'
+      views:
+        | never
+    }
+    'src/pages/update-password.vue': {
+      routes:
+        | '/update-password'
       views:
         | never
     }
