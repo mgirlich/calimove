@@ -5,7 +5,7 @@ import { useLog } from '../composables/useLog'
 import { useNextFlow } from '../composables/useNextFlow'
 import workoutsData from '../data/workouts.json'
 import type { Workout } from '../types/data'
-import { formatMinutes, middleWorkout, totalTime } from '../utils/workout'
+import { workoutTimeLabel, middleWorkout } from '../utils/workout'
 
 const workouts = workoutsData as Workout[]
 
@@ -34,7 +34,7 @@ const nextWorkout = computed(() => {
             <p class="text-sm text-muted mt-1">
               {{ nextWorkout.n_sets }} set{{ nextWorkout.n_sets !== 1 ? 's' : '' }} ·
               {{ nextWorkout.n_reps }} rep{{ nextWorkout.n_reps !== 1 ? 's' : '' }} · ~{{
-                formatMinutes(totalTime(nextWorkout))
+                workoutTimeLabel(nextWorkout).total
               }}
             </p>
           </div>

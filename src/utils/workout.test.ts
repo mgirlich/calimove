@@ -2,7 +2,14 @@ import { describe, expect, it } from 'vitest'
 
 import type { Workout } from '../types/data'
 
-import { formatMinutes, middleWorkout, timeActive, timeBreak, totalTime } from './workout'
+import {
+  formatMinutes,
+  middleWorkout,
+  timeActive,
+  timeBreak,
+  totalTime,
+  workoutTimeLabel,
+} from './workout'
 
 const workout = (overrides: Partial<Workout> = {}): Workout => ({
   workout_id: 1,
@@ -55,10 +62,21 @@ describe('middleWorkout', () => {
   })
 })
 
-describe('formatMinutes', () => {
-  it('rounds up to nearest minute', () => {
-    expect(formatMinutes(60)).toBe('1 min')
-    expect(formatMinutes(61)).toBe('2 min')
-    expect(formatMinutes(1800)).toBe('30 min')
+describe('workoutTimeLabel', () => {
+  it('active + rest always equals total', () => {
+    const w = workout({ n_sets: 2, n_reps: 3, durations: [40, 40, 40, 40, 40, 60, 40, 40, 60, 60] })
+    const label = workoutTimeLabel(w)
+    const total = parseInt(label.total)
+    const active = parseInt(label.active)
+    const rest = parseInt(label.rest)
+    expect(active + rest).toBe(total)
+  })
+
+  it('returns minute strings', () => {
+    const w = workout({ n_sets: 1, n_reps: 1, durations: [1800] })
+    const label = workoutTimeLabel(w)
+    expect(label.total).toMatch(/^\d+ min$/)
+    expect(label.active).toMatch(/^\d+ min$/)
+    expect(label.rest).toMatch(/^\d+ min$/)
   })
 })

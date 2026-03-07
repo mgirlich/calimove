@@ -6,7 +6,7 @@ import ExerciseCard from '../../components/ExerciseCard.vue'
 import flowsData from '../../data/flows.json'
 import workoutsData from '../../data/workouts.json'
 import type { Flow, Workout } from '../../types/data'
-import { formatMinutes, middleWorkout, timeBreak, timeActive, totalTime } from '../../utils/workout'
+import { middleWorkout, totalTime, workoutTimeLabel } from '../../utils/workout'
 
 const route = useRoute()
 
@@ -53,13 +53,13 @@ watch(flowWorkouts, (ws) => {
             "
             @click="selectedWorkoutId = workout.workout_id"
           >
-            <span class="font-semibold text-sm">{{ formatMinutes(totalTime(workout)) }}</span>
+            <span class="font-semibold text-sm">{{ workoutTimeLabel(workout).total }}</span>
             <span
               class="text-xs"
               :class="selectedWorkoutId === workout.workout_id ? 'text-primary/70' : 'text-muted'"
             >
-              {{ formatMinutes(timeActive(workout)) }} active ·
-              {{ formatMinutes(timeBreak(workout)) }} rest
+              {{ workoutTimeLabel(workout).active }} active ·
+              {{ workoutTimeLabel(workout).rest }} rest
             </span>
             <span class="text-xs">{{ workout.n_sets }}×{{ workout.n_reps }}</span>
           </button>

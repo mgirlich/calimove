@@ -34,7 +34,21 @@ export function middleWorkout(workouts: Workout[]): Workout | undefined {
   return sorted[Math.floor(sorted.length / 2)]
 }
 
-/** Formats a duration in seconds as "X min". */
-export function formatMinutes(seconds: number): string {
-  return `${Math.ceil(seconds / 60)} min`
+/**
+ * Returns consistent display labels for total, active and rest time.
+ * Rest is derived as (total − active) so all three always add up correctly.
+ */
+export function workoutTimeLabel(workout: Workout): {
+  total: string
+  active: string
+  rest: string
+} {
+  const totalMin = Math.round(totalTime(workout) / 60)
+  const activeMin = Math.round(timeActive(workout) / 60)
+  const restMin = totalMin - activeMin
+  return {
+    total: `${totalMin} min`,
+    active: `${activeMin} min`,
+    rest: `${restMin} min`,
+  }
 }
