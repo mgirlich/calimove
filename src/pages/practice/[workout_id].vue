@@ -6,7 +6,7 @@ import { useAuth } from '../../composables/useAuth'
 import { useWakeLock } from '../../composables/useWakeLock'
 import flowsData from '../../data/flows.json'
 import workoutsData from '../../data/workouts.json'
-import { db } from '../../lib/supabase'
+import { db, exerciseImageUrl } from '../../lib/supabase'
 import type { Flow, Workout, WorkoutExercise } from '../../types/data'
 import { CountdownTimer } from '../../utils/CountdownTimer'
 
@@ -381,7 +381,7 @@ onUnmounted(() => {
       <!-- Exercise image + links -->
       <div v-if="curExercise" class="flex flex-col items-center gap-3 pt-4">
         <img
-          :src="`/exercise_images/exercise_${curExercise.exercise_id}.png`"
+          :src="exerciseImageUrl(curExercise.exercise_id)"
           :alt="curExercise.name"
           class="w-48 h-48 object-cover rounded-lg"
         />

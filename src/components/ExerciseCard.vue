@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { exerciseImageUrl } from '../lib/supabase'
 import type { FlowBase } from '../types/data'
 
 const { exerciseId, name, lectureId, modLectureId, flows } = defineProps<{
@@ -18,7 +19,7 @@ const BASE_URL = 'https://www.calimove.com/courses/1467532/lectures'
     :ui="{ body: 'p-0 sm:p-0 flex flex-col flex-1' }"
   >
     <img
-      :src="`/exercise_images/exercise_${exerciseId}.png`"
+      :src="exerciseImageUrl(exerciseId)"
       :alt="name"
       class="w-full aspect-square object-cover"
     />
