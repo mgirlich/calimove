@@ -47,6 +47,20 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/flows/': RouteRecordInfo<
+      '/flows/',
+      '/flows',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
+    '/flows/[flow_id]': RouteRecordInfo<
+      '/flows/[flow_id]',
+      '/flows/:flow_id',
+      { flow_id: ParamValue<true> },
+      { flow_id: ParamValue<false> },
+      | never
+    >,
     '/login': RouteRecordInfo<
       '/login',
       '/login',
@@ -82,6 +96,18 @@ declare module 'vue-router/auto-routes' {
     'src/pages/exercises.vue': {
       routes:
         | '/exercises'
+      views:
+        | never
+    }
+    'src/pages/flows/index.vue': {
+      routes:
+        | '/flows/'
+      views:
+        | never
+    }
+    'src/pages/flows/[flow_id].vue': {
+      routes:
+        | '/flows/[flow_id]'
       views:
         | never
     }

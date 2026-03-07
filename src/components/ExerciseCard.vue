@@ -13,7 +13,10 @@ const BASE_URL = 'https://www.calimove.com/courses/1467532/lectures'
 </script>
 
 <template>
-  <UCard class="flex flex-col overflow-hidden" :ui="{ body: 'p-0 sm:p-0 flex flex-col flex-1' }">
+  <UCard
+    class="h-full flex flex-col overflow-hidden"
+    :ui="{ body: 'p-0 sm:p-0 flex flex-col flex-1' }"
+  >
     <img
       :src="`/exercise_images/exercise_${exerciseId}.png`"
       :alt="name"
@@ -21,7 +24,7 @@ const BASE_URL = 'https://www.calimove.com/courses/1467532/lectures'
     />
     <div class="p-3 flex flex-col gap-2 flex-1">
       <p class="font-medium text-sm leading-tight line-clamp-2">{{ name }}</p>
-      <div class="flex gap-2 text-xs">
+      <div class="flex flex-wrap gap-2 text-xs">
         <UButton
           :to="`${BASE_URL}/${lectureId}`"
           target="_blank"

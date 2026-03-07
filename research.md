@@ -288,7 +288,7 @@ Port `ExercisesPage` + `ExerciseCard` to Nuxt UI.
 
 ---
 
-### Phase 7 — Flows + Flow Detail pages
+### Phase 7 — Flows + Flow Detail pages ✅
 
 Port `FlowsPage` + `FlowPage` using static JSON data.
 
