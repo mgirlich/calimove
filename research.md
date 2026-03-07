@@ -261,7 +261,7 @@ Streak and weekday distribution logic (currently Python) moves to `src/utils/sta
 
 ---
 
-### Phase 5 — Dashboard (home page)
+### Phase 5 — Dashboard (home page) ✅
 
 **Goal:** Replace the exercises-as-home-page with a dashboard reflecting actual usage.
 
