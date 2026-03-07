@@ -1,51 +1,38 @@
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+import { useAuth } from './composables/useAuth'
+
+const { user, signOut } = useAuth()
+const router = useRouter()
+
+async function handleSignOut() {
+  await signOut()
+  await router.push('/login')
+}
+</script>
+
 <template>
-  <Suspense>
-    <UApp>
-      <UHeader>
-        <template #left>
-          <RouterLink to="/">
-            <AppLogo class="w-auto h-6 shrink-0" />
-          </RouterLink>
+  <UApp>
+    <UHeader>
+      <template #left>
+        <RouterLink to="/" class="font-semibold text-lg">Calimove</RouterLink>
+      </template>
 
-          <TemplateMenu />
+      <template #right>
+        <UColorModeButton />
+
+        <template v-if="user">
+          <span class="text-sm text-muted hidden sm:block">{{ user.email }}</span>
+          <UButton color="neutral" variant="ghost" size="sm" @click="handleSignOut">
+            Sign out
+          </UButton>
         </template>
+      </template>
+    </UHeader>
 
-        <template #right>
-          <UColorModeButton />
-
-          <UButton
-            to="https://github.com/nuxt-ui-templates/starter-vue"
-            target="_blank"
-            icon="simple-icons:github"
-            aria-label="GitHub"
-            color="neutral"
-            variant="ghost"
-          />
-        </template>
-      </UHeader>
-
-      <UMain>
-        <RouterView />
-      </UMain>
-
-      <USeparator icon="simple-icons:vuedotjs" />
-
-      <UFooter>
-        <template #left>
-          <p class="text-sm text-muted">Built with Nuxt UI • © {{ new Date().getFullYear() }}</p>
-        </template>
-
-        <template #right>
-          <UButton
-            to="https://github.com/nuxt-ui-templates/starter-vue"
-            target="_blank"
-            icon="simple-icons:github"
-            aria-label="GitHub"
-            color="neutral"
-            variant="ghost"
-          />
-        </template>
-      </UFooter>
-    </UApp>
-  </Suspense>
+    <UMain>
+      <RouterView />
+    </UMain>
+  </UApp>
 </template>
