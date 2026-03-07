@@ -303,7 +303,7 @@ Port `FlowsPage` + `FlowPage` using static JSON data.
 
 The most complex page. Port `PracticePage` + `CountdownTimer` + `useWakeLock`.
 
-`CountdownTimer` and `useWakeLock` are pure TS with no Quasar dependency — copy with minimal changes.
+`CountdownTimer` and `useWakeLock` are pure TS with no Quasar dependency — copy and improve the code.
 
 **State machine:**
 
@@ -319,7 +319,7 @@ ready (8s) → workout (durations[i]s) → rest (15s) → next rep/exercise/set 
 - **Auto-log prompt on finish** — when state reaches `finished`, show a modal "Log this workout?" instead of requiring a manual button click
 - Prev / Play-Pause / Next buttons
 - Space bar shortcut
-- Beep audio + vibration at 5s remaining
+- Beep audio + vibration at 5s remaining. Find a nicer beep sound.
 - WakeLock on play, release on pause
 
 **Deliverables:** `src/pages/practice/[workout_id].vue`, `src/utils/CountdownTimer.ts`, updated `useWakeLock`
