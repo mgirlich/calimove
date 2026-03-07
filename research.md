@@ -179,7 +179,7 @@ Supabase Auth will be used. Since this is a personal/small-group tool, new users
 - **Commits:** Divide each phase into meaningful, focused commits — not too large
 - **Tests:** Each commit includes tests where it makes sense to test the code
 - **Verify:** Run `pnpm verify` (format + lint + typecheck + test) before every commit; it must pass
-- **Approval:** Wait for explicit approval before committing
+- **Approval:** Wait for explicit approval before committing and going to the next commit
 - **Phase completion:** Mark a phase as completed in this document once all its commits are approved
 
 ---
@@ -276,13 +276,13 @@ This makes the most common action (start next workout) one tap from opening the 
 
 ---
 
-### Phase 6 — Exercises page
+### Phase 6 — Exercises page ✅
 
 Port `ExercisesPage` + `ExerciseCard` to Nuxt UI.
 
 - `UInput` for name search (client-side filter over static JSON)
 - Responsive card grid (mobile: 2 columns, desktop: 4–5)
-- Exercise image URL: TBD (S3 or Supabase Storage — see Phase 9)
+- Exercise image URL: in /Users/maximiliangirlich/Github/calimove-old/frontend/public
 - "Video" / "Mods" links: `https://www.calimove.com/courses/1467532/lectures/{lecture_id}`
 - Flow chips: behaviour TBD
 
