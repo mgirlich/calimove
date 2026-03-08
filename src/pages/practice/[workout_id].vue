@@ -277,6 +277,7 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('keyup', handleKeyUp)
   timer?.destroy()
+  wakeLock.destroy()
   void wakeLock.release()
 })
 </script>
