@@ -343,7 +343,7 @@ Moved to Supabase Storage (public bucket `exercise-images`). Upload script at `s
 
 ---
 
-### Phase 11 — PWA / offline
+### Phase 11 — PWA / offline ✅
 
 **Goal:** App works fully offline once loaded.
 
@@ -354,6 +354,14 @@ With static data already baked in (Phase 2), only the executions need network. A
 3. Manifest: app name, icons, `display: standalone` for home screen install on mobile
 
 **Deliverables:** PWA config in `vite.config.ts`, manifest, icons
+
+- `vite-plugin-pwa@1.2.0` + `sharp` (dev) added
+- New calimove app icon (`public/logo.svg` — person in Y/star pose on green)
+- Generated `public/icons/icon-192.png` + `public/icons/icon-512.png` via `scripts/generate-icons.mjs` (`pnpm icons:generate`)
+- Workbox pre-caches all JS/CSS/HTML/PNG/SVG/MP3/fonts (26 entries, ~785 KiB)
+- Runtime `CacheFirst` for Supabase Storage images (30d, max 120 entries) and bunny.net fonts (1y)
+- `navigateFallback: 'index.html'` for offline SPA routing
+- `index.html` updated: title "Calimove", proper description, `theme-color`, `apple-touch-icon`
 
 ---
 
