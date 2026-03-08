@@ -299,7 +299,7 @@ Port `FlowsPage` + `FlowPage` using static JSON data.
 
 ---
 
-### Phase 8 — Practice page
+### Phase 8 — Practice page ✅
 
 The most complex page. Port `PracticePage` + `CountdownTimer` + `useWakeLock`.
 
@@ -328,25 +328,18 @@ ready (8s) → workout (durations[i]s) → rest (15s) → next rep/exercise/set 
 
 ### Phase 9 — Log page ✅
 
-Port `LogPage`. Streak + weekday stats from `useLog()` (computed client-side from executions).
+Folded into the home page dashboard instead of a separate `/log` route.
 
-**New additions:**
-
-- Recent workout history list (date + flow name) — the data is already being fetched, just display it
-- Aggregate stats: max streak, current streak, total workouts, weekday distribution
-
-Start here; expand further (calendar heatmap, per-flow breakdown) later.
+- Aggregate stats: current streak, best streak, total workouts (3-card row)
+- Weekday distribution bar chart (Mon–Sun)
+- Recent workout history list (date + flow name, descending)
+- Also added a proper navigation bar (Home / Exercises / Flows) in `App.vue`
 
 ---
 
-### Phase 10 — Images
+### Phase 10 — Images ✅
 
-Resolve S3 situation:
-
-- (a) Keep on S3 — just update the image URL pattern in components
-- (b) Move to Supabase Storage — upload 83 images, update URL pattern
-
-Placeholder until S3 location is confirmed. Image URL is used in one place: `exercise_${exercise_id}.png` pattern — changing it is a one-line update.
+Moved to Supabase Storage (public bucket `exercise-images`). Upload script at `scripts/upload-images.mjs`. URL constructed via `exerciseImageUrl(id)` helper in `src/lib/supabase.ts`. Local `public/exercise_images/` removed.
 
 ---
 
@@ -366,6 +359,8 @@ With static data already baked in (Phase 2), only the executions need network. A
 
 ### Pending
 
-- Confirm S3 bucket location for exercise images (affects Phase 6 + 10)
 - Decide flow chip click behaviour (affects Phase 6)
-- Choose login method: email+password vs magic link
+
+### Out of plan additions
+
+- **Password management** (after Phase 4): "Forgot password?" reset flow on login page + `/update-password` page; `resetPassword` and `updatePassword` in `useAuth`
