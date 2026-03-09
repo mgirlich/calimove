@@ -266,7 +266,7 @@ async function logWorkout() {
   }
   showLogModal.value = false
   localStorage.removeItem(STORAGE_KEY)
-  await router.push('/log')
+  await router.push('/')
 }
 
 // ── Lifecycle ─────────────────────────────────────────────────────────────────
@@ -425,7 +425,7 @@ onUnmounted(() => {
     </template>
     <template #footer>
       <div class="flex justify-end gap-3">
-        <UButton variant="ghost" color="neutral" @click="() => void router.push('/log')">
+        <UButton variant="ghost" color="neutral" @click="() => void router.push('/')">
           Skip
         </UButton>
         <UButton :loading="logging" @click="logWorkout">Log workout</UButton>
