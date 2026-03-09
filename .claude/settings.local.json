@@ -4,7 +4,8 @@
       "Bash(sqlite3:*)",
       "Bash(pnpm verify:*)",
       "Bash(pnpm eslint:*)",
-      "Bash(pnpm typecheck:*)"
+      "Bash(pnpm typecheck:*)",
+      "Bash(pnpm test:*)"
     ]
   }
 }

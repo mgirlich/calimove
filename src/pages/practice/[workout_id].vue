@@ -8,6 +8,7 @@ import flowsData from '../../data/flows.json'
 import workoutsData from '../../data/workouts.json'
 import { db, exerciseImageUrl } from '../../lib/supabase'
 import type { Flow, Workout, WorkoutExercise } from '../../types/data'
+import { playBeep, unlockAudio } from '../../utils/audio'
 import { CountdownTimer } from '../../utils/CountdownTimer'
 
 const SECONDS_INITIAL = 8
@@ -52,10 +53,8 @@ const logError = ref<string | null>(null)
 
 // ── Audio ─────────────────────────────────────────────────────────────────────
 
-const beepAudio = new Audio('/beep.mp3')
-
 function playAlert() {
-  beepAudio.play().catch(() => {})
+  playBeep()
   if ('vibrate' in navigator) navigator.vibrate(200)
 }
 
@@ -66,6 +65,7 @@ let timer: CountdownTimer | null = null
 function createTimer(seconds: number): CountdownTimer {
   timer?.destroy()
   msLeft.value = seconds * 1000
+  const alertSeconds = Math.min(SECONDS_ALERT, seconds - 1)
   const t = new CountdownTimer(
     seconds,
     handleTimerFinished,
@@ -73,7 +73,7 @@ function createTimer(seconds: number): CountdownTimer {
       msLeft.value = ms
     },
     playAlert,
-    SECONDS_ALERT,
+    alertSeconds,
   )
   timer = t
   return t
@@ -119,13 +119,14 @@ function applyIndex(idx: number) {
 }
 
 function nextRep() {
+  const idx = posIndex()
   const total = workout!.n_sets * exercises.length * workout!.n_reps
-  if (posIndex() >= total - 1) {
+  if (idx >= total - 1) {
     practiceState.value = 'finished'
     return
   }
   practiceState.value = 'rest'
-  applyIndex(posIndex() + 1)
+  applyIndex(idx + 1)
 }
 
 function resetToReady() {
@@ -140,11 +141,13 @@ function resetToReady() {
 
 function toggleTimer() {
   if (!timer || practiceState.value === 'finished') return
+  unlockAudio()
   timer.toggle()
   isRunning.value = timer.isRunning
   if (isRunning.value) {
     void wakeLock.request()
   } else {
+    saveState()
     void wakeLock.release()
   }
 }

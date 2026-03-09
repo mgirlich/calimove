@@ -47,16 +47,18 @@ export class CountdownTimer {
 
   /** Stop and clean up — call this when the timer is no longer needed. */
   destroy() {
+    this.running = false
     clearInterval(this.intervalId)
     this.intervalId = undefined
   }
 
   private tick() {
-    const dt = Date.now() - this.timeLastUpdate
+    const now = Date.now()
+    const dt = now - this.timeLastUpdate
     this.msLeft -= dt
-    this.timeLastUpdate = Date.now()
+    this.timeLastUpdate = now
 
-    if (this.msLeft <= this.nextAlertAt) {
+    while (this.nextAlertAt >= 0 && this.msLeft <= this.nextAlertAt) {
       this.onAlert?.()
       this.nextAlertAt -= 1000
     }

@@ -113,4 +113,42 @@ describe('CountdownTimer', () => {
     expect(onTick.mock.calls.length).toBe(callCount)
     timer.destroy()
   })
+
+  it('sets isRunning to false after destroy() while running', () => {
+    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    timer.start()
+    expect(timer.isRunning).toBe(true)
+    timer.destroy()
+    expect(timer.isRunning).toBe(false)
+  })
+
+  it('fires onAlert at the 0ms threshold (last beep on finish)', () => {
+    const onAlert = vi.fn()
+    // 5s timer, alertSeconds=3 → thresholds at 3000, 2000, 1000, 0ms remaining
+    const timer = new CountdownTimer(5, vi.fn(), vi.fn(), onAlert, 3)
+    timer.start()
+    vi.advanceTimersByTime(5_100)
+    expect(onAlert).toHaveBeenCalledTimes(4)
+    timer.destroy()
+  })
+
+  it('fires all missed alerts when a single coalesced tick crosses multiple thresholds', () => {
+    const onAlert = vi.fn()
+    const timer = new CountdownTimer(10, vi.fn(), vi.fn(), onAlert, 3)
+    // Manually position the timer just above the first alert threshold.
+    // Reflect.set is used to write to private fields without unsafe type assertions.
+    Reflect.set(timer, 'msLeft', 3100)
+    Reflect.set(timer, 'timeLastUpdate', 0)
+    // Simulate a throttled tick: dt=1700ms drops msLeft to 1400ms,
+    // crossing both the 3000ms and 2000ms thresholds in one go.
+    vi.spyOn(Date, 'now').mockReturnValue(1700)
+    const tick = Reflect.get(timer, 'tick')
+    if (typeof tick === 'function') tick.call(timer)
+    vi.restoreAllMocks()
+    // while loop: 1400 <= 3000 → alert (nextAlertAt=2000)
+    //             1400 <= 2000 → alert (nextAlertAt=1000)
+    //             1400 <= 1000 → no
+    expect(onAlert).toHaveBeenCalledTimes(2)
+    timer.destroy()
+  })
 })
