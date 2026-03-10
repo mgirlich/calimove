@@ -32,7 +32,10 @@ export async function handleInvite(req: Request, supabaseAdmin: SupabaseClient):
     return json({ error: 'Missing email' }, 400)
   }
 
-  const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email)
+  const origin = req.headers.get('origin') ?? Deno.env.get('SITE_URL')
+  const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
+    redirectTo: `${origin}/update-password`,
+  })
   if (error) {
     return json({ error: error.message }, 400)
   }

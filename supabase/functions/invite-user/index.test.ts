@@ -4,12 +4,13 @@ import type { SupabaseClient } from 'jsr:@supabase/supabase-js@2'
 import { handleInvite } from './index.ts'
 
 function makeRequest(
-  options: { authHeader?: string; body?: unknown; method?: string } = {},
+  options: { authHeader?: string; body?: unknown; method?: string; origin?: string } = {},
 ): Request {
   return new Request('http://localhost/invite-user', {
     method: options.method ?? 'POST',
     headers: {
       'Content-Type': 'application/json',
+      origin: options.origin ?? 'https://app.example.com',
       ...(options.authHeader ? { Authorization: options.authHeader } : {}),
     },
     body: JSON.stringify(options.body ?? { email: 'new@example.com' }),
@@ -19,7 +20,7 @@ function makeRequest(
 function makeAdmin(
   overrides: Partial<{
     getUser: (jwt: string) => unknown
-    inviteUserByEmail: (email: string) => unknown
+    inviteUserByEmail: (email: string, options: unknown) => unknown
   }> = {},
 ): SupabaseClient {
   return {
@@ -30,7 +31,8 @@ function makeAdmin(
           Promise.resolve({ data: { user: { app_metadata: { is_admin: true } } }, error: null })),
       admin: {
         inviteUserByEmail:
-          overrides.inviteUserByEmail ?? ((_email: string) => Promise.resolve({ error: null })),
+          overrides.inviteUserByEmail ??
+          ((_email: string, _opts: unknown) => Promise.resolve({ error: null })),
       },
     },
   } as unknown as SupabaseClient
@@ -84,8 +86,19 @@ Deno.test('returns 400 when Supabase invite fails', async () => {
   })
 })
 
-Deno.test('returns 200 on success', async () => {
-  const res = await handleInvite(makeRequest({ authHeader: 'Bearer valid-token' }), makeAdmin())
+Deno.test('returns 200 on success and passes redirectTo from origin header', async () => {
+  let capturedOptions: unknown
+  const admin = makeAdmin({
+    inviteUserByEmail: (_email: string, opts: unknown) => {
+      capturedOptions = opts
+      return Promise.resolve({ error: null })
+    },
+  })
+  const res = await handleInvite(
+    makeRequest({ authHeader: 'Bearer valid-token', origin: 'https://app.example.com' }),
+    admin,
+  )
   assertEquals(res.status, 200)
   assertEquals(await res.json(), { success: true })
+  assertEquals(capturedOptions, { redirectTo: 'https://app.example.com/update-password' })
 })
