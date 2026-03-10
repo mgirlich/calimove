@@ -1,14 +1,7 @@
 <script setup lang="ts">
-import { createClient } from '@supabase/supabase-js'
 import { ref } from 'vue'
 
-// The admin client uses the service role key to invite users.
-// This is intentional for a personal/owner-only tool — the admin page
-// is protected behind authentication and only accessible to trusted users.
-const adminClient = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY,
-)
+import { supabase } from '../lib/supabase'
 
 const email = ref('')
 const loading = ref(false)
@@ -20,8 +13,13 @@ async function inviteUser() {
   message.value = null
   loading.value = true
   try {
-    const { error: err } = await adminClient.auth.admin.inviteUserByEmail(email.value)
-    if (err) throw err
+    const { error: err } = await supabase.functions.invoke('invite-user', {
+      body: { email: email.value },
+    })
+    if (err) {
+      const body = await (err as { context?: Response }).context?.json().catch(() => null)
+      throw new Error(body?.error ?? err.message)
+    }
     message.value = `Invitation sent to ${email.value}`
     email.value = ''
   } catch (e) {

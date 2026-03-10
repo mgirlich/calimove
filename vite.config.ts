@@ -6,6 +6,9 @@ import vueRouter from 'vue-router/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  test: {
+    exclude: ['supabase/**', 'node_modules/**'],
+  },
   plugins: [
     vueRouter({
       dts: 'src/route-map.d.ts',
