@@ -420,7 +420,7 @@ onUnmounted(() => {
         <img
           :src="exerciseImageUrl(curExercise.exercise_id)"
           :alt="curExercise.name"
-          class="w-48 h-48 object-cover rounded-lg"
+          class="w-48 aspect-[300/378] object-cover rounded-lg"
         />
         <div class="flex gap-2">
           <UButton
