@@ -19,3 +19,35 @@ export function playBeep() {
   osc.start()
   osc.stop(ctx.currentTime + 0.3)
 }
+
+const bufferCache = new Map<number, AudioBuffer>()
+
+/**
+ * Fetch and decode an exercise announcement MP3 into the AudioContext buffer cache.
+ * Must be called after unlockAudio() so the AudioContext exists.
+ */
+export async function preloadAnnouncement(exerciseId: number, url: string): Promise<void> {
+  if (!ctx || bufferCache.has(exerciseId)) return
+  try {
+    const res = await fetch(url)
+    const arrayBuffer = await res.arrayBuffer()
+    const audioBuffer = await ctx.decodeAudioData(arrayBuffer)
+    bufferCache.set(exerciseId, audioBuffer)
+  } catch {
+    // silently skip on network error or missing file
+  }
+}
+
+/**
+ * Play a pre-loaded exercise announcement. No-ops if the AudioContext is not
+ * running or the buffer hasn't been preloaded yet.
+ */
+export function playAnnouncement(exerciseId: number): void {
+  if (!ctx || ctx.state !== 'running') return
+  const buffer = bufferCache.get(exerciseId)
+  if (!buffer) return
+  const source = ctx.createBufferSource()
+  source.buffer = buffer
+  source.connect(ctx.destination)
+  source.start()
+}

@@ -13,3 +13,7 @@ export const db = supabase.schema('calimove')
 export function exerciseImageUrl(exerciseId: number): string {
   return `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/exercise-images/exercise_${exerciseId}.png`
 }
+
+export function exerciseAudioUrl(exerciseId: number, voice = 'Adam'): string {
+  return `${import.meta.env.VITE_SUPABASE_URL}/storage/v1/object/public/exercise-audio/${voice}/${exerciseId}.mp3`
+}

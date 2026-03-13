@@ -35,3 +35,4 @@ tsconfig.node.tsbuildinfo
 
 # Seed script — extracted SQLite data (generated, not committed)
 scripts/data/
+/audio/

@@ -6,9 +6,9 @@ import { useAuth } from '../../composables/useAuth'
 import { useWakeLock } from '../../composables/useWakeLock'
 import flowsData from '../../data/flows.json'
 import workoutsData from '../../data/workouts.json'
-import { db, exerciseImageUrl } from '../../lib/supabase'
+import { db, exerciseAudioUrl, exerciseImageUrl } from '../../lib/supabase'
 import type { Flow, Workout, WorkoutExercise } from '../../types/data'
-import { playBeep, unlockAudio } from '../../utils/audio'
+import { playAnnouncement, playBeep, preloadAnnouncement, unlockAudio } from '../../utils/audio'
 import { CountdownTimer } from '../../utils/CountdownTimer'
 
 const SECONDS_INITIAL = 8
@@ -58,6 +58,24 @@ function playAlert() {
   if ('vibrate' in navigator) navigator.vibrate(200)
 }
 
+let announcedCurrentPosition = false
+
+function announceCurrentExercise() {
+  if (announcedCurrentPosition) return
+  const ex = curExercise.value
+  if (!ex) return
+  announcedCurrentPosition = true
+  void preloadAnnouncement(ex.exercise_id, exerciseAudioUrl(ex.exercise_id)).then(
+    () =>
+      new Promise<void>((resolve) => {
+        setTimeout(() => {
+          playAnnouncement(ex.exercise_id)
+          resolve()
+        }, 1000)
+      }),
+  )
+}
+
 // ── Timer ─────────────────────────────────────────────────────────────────────
 
 let timer: CountdownTimer | null = null
@@ -96,6 +114,7 @@ function handleTimerFinished() {
       return
     }
     nextSeconds = SECONDS_REST // nextRep always sets state to 'rest' when not finished
+    announceCurrentExercise()
   }
 
   const t = createTimer(nextSeconds)
@@ -127,6 +146,7 @@ function nextRep() {
   }
   practiceState.value = 'rest'
   applyIndex(idx + 1)
+  announcedCurrentPosition = false
 }
 
 function resetToReady() {
@@ -139,13 +159,22 @@ function resetToReady() {
 
 // ── Controls ──────────────────────────────────────────────────────────────────
 
+let announcementsPreloaded = false
+
 function toggleTimer() {
   if (!timer || practiceState.value === 'finished') return
   unlockAudio()
+  if (!announcementsPreloaded) {
+    announcementsPreloaded = true
+    for (const ex of exercises) {
+      void preloadAnnouncement(ex.exercise_id, exerciseAudioUrl(ex.exercise_id))
+    }
+  }
   timer.toggle()
   isRunning.value = timer.isRunning
   if (isRunning.value) {
     void wakeLock.request()
+    announceCurrentExercise()
   } else {
     saveState()
     void wakeLock.release()
@@ -156,12 +185,16 @@ function handleNextClick() {
   if (practiceState.value === 'finished' || !workout) return
   const total = workout.n_sets * exercises.length * workout.n_reps
   applyIndex(Math.min(posIndex() + 1, total - 1))
+  announcedCurrentPosition = false
+  announceCurrentExercise()
   resetToReady()
 }
 
 function handlePrevClick() {
   if (practiceState.value === 'finished' || !workout) return
   applyIndex(Math.max(posIndex() - 1, 0))
+  announcedCurrentPosition = false
+  announceCurrentExercise()
   resetToReady()
 }
 

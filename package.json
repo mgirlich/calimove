@@ -18,6 +18,7 @@
     "db:seed": "node --env-file=.env.local scripts/seed.mjs",
     "data:generate": "node --env-file=.env.local scripts/generate-data.mjs",
     "icons:generate": "node scripts/generate-icons.mjs",
+    "upload:audio": "node --env-file=.env.local --experimental-strip-types scripts/upload-audio.ts",
     "verify": "pnpm format && pnpm run lint && pnpm typecheck && pnpm test",
     "prepare": "git config core.hooksPath .githooks"
   },
@@ -29,6 +30,7 @@
     "vue-router": "5.0.3"
   },
   "devDependencies": {
+    "@types/node": "25.5.0",
     "@vitejs/plugin-vue": "6.0.4",
     "@vue/test-utils": "2.4.6",
     "eslint": "10.0.2",
