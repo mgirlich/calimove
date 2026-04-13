@@ -16,7 +16,7 @@ export function useWakeLock() {
   let wakeLock: WakeLockSentinel | null = null
   let shouldReacquire = false
   const isSupported = 'wakeLock' in navigator
-  const isActive = ref<boolean>(false)
+  const isActive = ref(false)
 
   async function request(type: WakeLockType = 'screen') {
     if (!isSupported) return

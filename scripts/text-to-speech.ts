@@ -9,7 +9,7 @@ const API_KEY = process.env.ELEVENLABS_API_KEY ?? '<your-api-key>'
 const MODEL_ID = 'eleven_multilingual_v2'
 const OUTPUT_DIR = './audio'
 
-console.log(API_KEY.slice(0,8))
+console.log(API_KEY.slice(0, 8))
 
 const VOICES = [
   { id: 'pNInz6obpgDQGcFmaJgB', name: 'Adam' },
@@ -33,7 +33,9 @@ async function generateForVoice(voiceId: string, voiceName: string) {
   const done = exercises.filter(({ exercise_id }: { exercise_id: number }) =>
     existsSync(`${voiceDir}/${exercise_id}.mp3`),
   ).length
-  console.log(`\n🎙️  Voice: ${voiceName} — ${done}/${exercises.length} done, ${exercises.length - done} remaining`)
+  console.log(
+    `\n🎙️  Voice: ${voiceName} — ${done}/${exercises.length} done, ${exercises.length - done} remaining`,
+  )
 
   for (const exercise of exercises) {
     const { exercise_id, name } = exercise

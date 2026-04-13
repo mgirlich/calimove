@@ -3,11 +3,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 // ── Mock AudioContext ──────────────────────────────────────────────────────────
 
 let mockCtxState = 'running'
-const mockResume = vi.fn().mockResolvedValue(undefined)
-const mockDecodeAudioData = vi.fn()
-const mockConnect = vi.fn()
-const mockStart = vi.fn()
-const mockCreateBufferSource = vi.fn()
+const mockResume = vi.fn<() => Promise<void>>().mockResolvedValue(undefined)
+const mockDecodeAudioData = vi.fn<() => Promise<unknown>>()
+const mockConnect = vi.fn<() => void>()
+const mockStart = vi.fn<() => void>()
+const mockCreateBufferSource =
+  vi.fn<() => { buffer: unknown; connect: typeof mockConnect; start: typeof mockStart }>()
 
 class MockAudioContext {
   get state() {
@@ -18,15 +19,25 @@ class MockAudioContext {
   resume = mockResume
   decodeAudioData = mockDecodeAudioData
   createBufferSource = mockCreateBufferSource
-  createOscillator = vi.fn(() => ({
-    connect: vi.fn(),
+  createOscillator = vi.fn<
+    () => { connect: () => void; frequency: { value: number }; start: () => void; stop: () => void }
+  >(() => ({
+    connect: vi.fn<() => void>(),
     frequency: { value: 0 },
-    start: vi.fn(),
-    stop: vi.fn(),
+    start: vi.fn<() => void>(),
+    stop: vi.fn<() => void>(),
   }))
-  createGain = vi.fn(() => ({
-    connect: vi.fn(),
-    gain: { setValueAtTime: vi.fn(), exponentialRampToValueAtTime: vi.fn() },
+  createGain = vi.fn<
+    () => {
+      connect: () => void
+      gain: { setValueAtTime: () => void; exponentialRampToValueAtTime: () => void }
+    }
+  >(() => ({
+    connect: vi.fn<() => void>(),
+    gain: {
+      setValueAtTime: vi.fn<() => void>(),
+      exponentialRampToValueAtTime: vi.fn<() => void>(),
+    },
   }))
 }
 
@@ -38,7 +49,9 @@ function makeSource(): { buffer: unknown; connect: typeof mockConnect; start: ty
 }
 
 function mockFetch(data = new ArrayBuffer(8)) {
-  return vi.fn().mockResolvedValue({ arrayBuffer: () => Promise.resolve(data) })
+  return vi
+    .fn<() => Promise<{ arrayBuffer: () => Promise<ArrayBuffer> }>>()
+    .mockResolvedValue({ arrayBuffer: () => Promise.resolve(data) })
 }
 
 // A unique object used as a fake AudioBuffer token — identity checked via toBe()
@@ -125,7 +138,7 @@ describe('audio', () => {
     })
 
     it('silently ignores fetch errors', async () => {
-      vi.stubGlobal('fetch', vi.fn().mockRejectedValue(new Error('network')))
+      vi.stubGlobal('fetch', vi.fn<() => Promise<never>>().mockRejectedValue(new Error('network')))
 
       audio.unlockAudio()
       await expect(audio.preloadAnnouncement(1, '/audio/Adam/1.mp3')).resolves.toBeUndefined()
