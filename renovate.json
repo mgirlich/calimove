@@ -1,13 +1,19 @@
 {
   "extends": ["github>nuxt/renovate-config-nuxt"],
   "lockFileMaintenance": {
-    "enabled": true
+    "enabled": true,
+    "automerge": true
   },
   "packageRules": [
     {
       "matchDepTypes": ["resolutions"],
       "enabled": false
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
     }
   ],
+  "minimumReleaseAge": "45 days",
   "postUpdateOptions": ["pnpmDedupe"]
 }
