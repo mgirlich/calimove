@@ -12,20 +12,20 @@ describe('CountdownTimer', () => {
   })
 
   it('starts in non-running state', () => {
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), vi.fn<(msLeft: number) => void>())
     expect(timer.isRunning).toBe(false)
     timer.destroy()
   })
 
   it('becomes running after start()', () => {
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), vi.fn<(msLeft: number) => void>())
     timer.start()
     expect(timer.isRunning).toBe(true)
     timer.destroy()
   })
 
   it('stops when pause() is called', () => {
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), vi.fn<(msLeft: number) => void>())
     timer.start()
     timer.pause()
     expect(timer.isRunning).toBe(false)
@@ -33,7 +33,7 @@ describe('CountdownTimer', () => {
   })
 
   it('toggles between running and paused', () => {
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), vi.fn<(msLeft: number) => void>())
     timer.toggle()
     expect(timer.isRunning).toBe(true)
     timer.toggle()
@@ -42,8 +42,8 @@ describe('CountdownTimer', () => {
   })
 
   it('calls onTick with decreasing msLeft', () => {
-    const onTick = vi.fn()
-    const timer = new CountdownTimer(10, vi.fn(), onTick)
+    const onTick = vi.fn<(msLeft: number) => void>()
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), onTick)
     timer.start()
     vi.advanceTimersByTime(500)
     expect(onTick).toHaveBeenCalled()
@@ -53,8 +53,8 @@ describe('CountdownTimer', () => {
   })
 
   it('calls onFinished when time runs out', () => {
-    const onFinished = vi.fn()
-    const timer = new CountdownTimer(5, onFinished, vi.fn())
+    const onFinished = vi.fn<() => void>()
+    const timer = new CountdownTimer(5, onFinished, vi.fn<(msLeft: number) => void>())
     timer.start()
     vi.advanceTimersByTime(6_000)
     expect(onFinished).toHaveBeenCalledOnce()
@@ -62,8 +62,8 @@ describe('CountdownTimer', () => {
   })
 
   it('does not call onFinished more than once', () => {
-    const onFinished = vi.fn()
-    const timer = new CountdownTimer(1, onFinished, vi.fn())
+    const onFinished = vi.fn<() => void>()
+    const timer = new CountdownTimer(1, onFinished, vi.fn<(msLeft: number) => void>())
     timer.start()
     vi.advanceTimersByTime(5_000)
     expect(onFinished).toHaveBeenCalledOnce()
@@ -71,8 +71,8 @@ describe('CountdownTimer', () => {
   })
 
   it('cannot be restarted after finishing', () => {
-    const onFinished = vi.fn()
-    const timer = new CountdownTimer(1, onFinished, vi.fn())
+    const onFinished = vi.fn<() => void>()
+    const timer = new CountdownTimer(1, onFinished, vi.fn<(msLeft: number) => void>())
     timer.start()
     vi.advanceTimersByTime(2_000)
     timer.start()
@@ -81,9 +81,15 @@ describe('CountdownTimer', () => {
   })
 
   it('calls onAlert at the exact second boundary', () => {
-    const onAlert = vi.fn()
+    const onAlert = vi.fn<() => void>()
     // 10s timer, alert at 3s remaining → fires at exactly 7s elapsed
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn(), onAlert, 3)
+    const timer = new CountdownTimer(
+      10,
+      vi.fn<() => void>(),
+      vi.fn<(msLeft: number) => void>(),
+      onAlert,
+      3,
+    )
     timer.start()
     vi.advanceTimersByTime(6_900)
     expect(onAlert).not.toHaveBeenCalled()
@@ -93,8 +99,8 @@ describe('CountdownTimer', () => {
   })
 
   it('stops ticking after destroy()', () => {
-    const onTick = vi.fn()
-    const timer = new CountdownTimer(10, vi.fn(), onTick)
+    const onTick = vi.fn<(msLeft: number) => void>()
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), onTick)
     timer.start()
     timer.destroy()
     const callCount = onTick.mock.calls.length
@@ -103,8 +109,8 @@ describe('CountdownTimer', () => {
   })
 
   it('does not tick while paused', () => {
-    const onTick = vi.fn()
-    const timer = new CountdownTimer(10, vi.fn(), onTick)
+    const onTick = vi.fn<(msLeft: number) => void>()
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), onTick)
     timer.start()
     vi.advanceTimersByTime(200)
     timer.pause()
@@ -115,7 +121,7 @@ describe('CountdownTimer', () => {
   })
 
   it('sets isRunning to false after destroy() while running', () => {
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn())
+    const timer = new CountdownTimer(10, vi.fn<() => void>(), vi.fn<(msLeft: number) => void>())
     timer.start()
     expect(timer.isRunning).toBe(true)
     timer.destroy()
@@ -123,9 +129,15 @@ describe('CountdownTimer', () => {
   })
 
   it('fires onAlert at the 0ms threshold (last beep on finish)', () => {
-    const onAlert = vi.fn()
+    const onAlert = vi.fn<() => void>()
     // 5s timer, alertSeconds=3 → thresholds at 3000, 2000, 1000, 0ms remaining
-    const timer = new CountdownTimer(5, vi.fn(), vi.fn(), onAlert, 3)
+    const timer = new CountdownTimer(
+      5,
+      vi.fn<() => void>(),
+      vi.fn<(msLeft: number) => void>(),
+      onAlert,
+      3,
+    )
     timer.start()
     vi.advanceTimersByTime(5_100)
     expect(onAlert).toHaveBeenCalledTimes(4)
@@ -133,8 +145,14 @@ describe('CountdownTimer', () => {
   })
 
   it('fires all missed alerts when a single coalesced tick crosses multiple thresholds', () => {
-    const onAlert = vi.fn()
-    const timer = new CountdownTimer(10, vi.fn(), vi.fn(), onAlert, 3)
+    const onAlert = vi.fn<() => void>()
+    const timer = new CountdownTimer(
+      10,
+      vi.fn<() => void>(),
+      vi.fn<(msLeft: number) => void>(),
+      onAlert,
+      3,
+    )
     // Manually position the timer just above the first alert threshold.
     // Reflect.set is used to write to private fields without unsafe type assertions.
     Reflect.set(timer, 'msLeft', 3100)
